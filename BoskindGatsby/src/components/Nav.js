@@ -76,7 +76,7 @@ export default function Nav() {
     <NavStyles>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/units">Illustrative Math</Link>
         </li>
         <li>
           <Link to="/links">Helpful Links</Link>
@@ -87,7 +87,7 @@ export default function Nav() {
           </Link>
         </li>
         <li>
-          <Link to="/videos">Videos</Link>
+          <Link to="/blog">Blog</Link>
         </li>
         <li>
           <Link to="/gamesStuff">Games and Stuff</Link>
