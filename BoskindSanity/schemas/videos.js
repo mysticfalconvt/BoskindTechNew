@@ -1,4 +1,4 @@
-import { FaPepperHot as icon } from 'react-icons/fa';
+import { ImYoutube2 as icon } from 'react-icons/im'
 
 export default {
   // Computer Name
