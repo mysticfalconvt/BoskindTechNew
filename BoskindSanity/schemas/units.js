@@ -1,52 +1,60 @@
-import { FaUnity as icon } from "react-icons/fa";
+import { FaUnity as icon } from 'react-icons/fa';
 
 export default {
   // Computer Name
-  name: "unit",
+  name: 'unit',
   // visible title
-  title: "Unit",
-  type: "document",
+  title: 'Unit',
+  type: 'document',
   icon,
   fields: [
     {
-      name: "name",
-      title: "Unit Name",
-      type: "string",
-      description: "Name of the Unit",
+      name: 'name',
+      title: 'Unit Name',
+      type: 'string',
+      description: 'Name of the Unit',
     },
     {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
       options: {
-        source: "name",
+        source: 'name',
         maxLength: 100,
       },
     },
     {
-      name: "GradeLevel",
-      title: "Grade Level",
-      type: "string",
-      description: "What Grade is this for?",
+      name: 'GradeLevel',
+      title: 'Grade Level',
+      type: 'string',
+      description: 'What Grade is this for?',
     },
     {
-      name: "UnitNumber",
-      title: "Unit Number",
-      type: "string",
-      description: "What Unit Number?",
+      name: 'UnitNumber',
+      title: 'Unit Number',
+      type: 'string',
+      description: 'What Unit Number?',
     },
     {
-      name: "Link",
-      title: "Link",
-      type: "url",
-      description: "Link to this unit",
+      name: 'Link',
+      title: 'Link',
+      type: 'url',
+      description: 'Link to this unit',
+    },
+    {
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
   ],
   preview: {
     select: {
-      name: "name",
-      UnitNumber: "UnitNumber",
-      GradeLevel: "GradeLevel",
+      name: 'name',
+      UnitNumber: 'UnitNumber',
+      GradeLevel: 'GradeLevel',
     },
     prepare: ({ name, UnitNumber, GradeLevel }) => ({
       title: `Grade:${GradeLevel} - Unit:${UnitNumber} - ${name} `,

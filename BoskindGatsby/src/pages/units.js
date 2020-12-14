@@ -24,6 +24,14 @@ export const query = graphql`
         }
         GradeLevel
         UnitNumber
+        Link
+        image {
+          asset {
+            fluid(maxWidth: 500) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
       }
     }
   }

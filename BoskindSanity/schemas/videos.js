@@ -1,4 +1,4 @@
-import { ImYoutube2 as icon } from 'react-icons/im'
+import { ImYoutube2 as icon } from 'react-icons/im';
 
 export default {
   // Computer Name
@@ -37,7 +37,7 @@ export default {
   ],
   preview: {
     select: {
-      name: 'name',
+      title: 'name',
       unit: 'unit',
     },
   },

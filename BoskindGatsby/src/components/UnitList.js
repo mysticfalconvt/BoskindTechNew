@@ -1,6 +1,7 @@
 import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
+import Img from 'gatsby-image';
 
 const UnitGridStyles = styled.div`
   display: grid;
@@ -27,11 +28,13 @@ const UnitStyles = styled.div`
 function SingleUnit({ unit }) {
   return (
     <UnitStyles>
-      <Link>
+      <Link to={`/unit/${unit.slug.current}`}>
         <p className="center">
           Grade {unit.GradeLevel} - Unit #{unit.UnitNumber}
         </p>
-        <h3>{unit.name}</h3>
+        <Img fluid={unit.image.asset.fluid} />
+
+        <h3 className="center">{unit.name}</h3>
       </Link>
     </UnitStyles>
   );

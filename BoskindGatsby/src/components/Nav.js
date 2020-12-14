@@ -31,7 +31,7 @@ const NavStyles = styled.nav`
       --rotate: -2.5deg;
     }
     &:nth-child(4) {
-      --rotate: 2.5deg;
+      --rotate: -1.5deg;
     }
     &:hover {
       --rotate: 4deg;
