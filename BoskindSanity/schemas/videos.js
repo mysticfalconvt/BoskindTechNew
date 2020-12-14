@@ -38,7 +38,13 @@ export default {
   preview: {
     select: {
       title: 'name',
-      unit: 'unit',
+      unitName: 'unit.name',
+      grade: 'unit.GradeLevel',
+      unit: 'unit.UnitNumber',
     },
+    prepare: ({ title, unit, grade, unitName }) => ({
+      title: `${title} Grade: ${grade} - Unit: ${unit}`,
+      subtitle: unitName,
+    }),
   },
 };

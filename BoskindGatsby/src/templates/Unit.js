@@ -20,7 +20,7 @@ export default function SingleUnitPage({ data }) {
         <h3 className="center">
           Grade {unit.GradeLevel} - Unit #{unit.UnitNumber}
         </h3>
-        <h2 className="center">{unit.name}</h2>
+        <h2 className="center mark">{unit.name}</h2>
 
         <h3 className="center">
           <a href={unit.Link} className="center">
@@ -28,18 +28,20 @@ export default function SingleUnitPage({ data }) {
           </a>
         </h3>
       </LessonGrid>
+      <h2 className="center">Math Videos</h2>
       <LessonGrid>
-        <ul>
-          {videos.map((video) => (
-            <li key={`video-${video.id}`}>
-              <a href={video.link}>{video.name}</a>
-            </li>
-          ))}
-        </ul>
+        {videos.map((video) => (
+          <h2 key={`video-${video.id}`} className="center">
+            <a href={video.link}>{video.name}</a>
+          </h2>
+        ))}
       </LessonGrid>
-
-      <Img fluid={unit.image.asset.fluid} />
-      <div />
+      <LessonGrid>
+        <div />
+        <div>
+          <Img fluid={unit.image.asset.fluid} className="center" />
+        </div>
+      </LessonGrid>
     </>
   );
 }
@@ -58,7 +60,7 @@ export const query = graphql`
       id
       image {
         asset {
-          fluid(maxWidth: 500) {
+          fluid(maxWidth: 600) {
             ...GatsbySanityImageFluid
           }
         }
@@ -70,6 +72,7 @@ export const query = graphql`
     ) {
       nodes {
         name
+        id
         link
       }
     }

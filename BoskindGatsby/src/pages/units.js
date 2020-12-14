@@ -5,10 +5,12 @@ import UnitList from '../components/UnitList';
 
 export default function PizzasPage({ data, pageContext }) {
   const units = data.units.nodes;
-  console.log(units);
   return (
     <>
       <SEO title="Math Units" />
+      <h1 className="center">Illustrative Math Grade 8</h1>
+
+      <h2 className="center">Math Videos</h2>
       <UnitList units={units} />
     </>
   );
