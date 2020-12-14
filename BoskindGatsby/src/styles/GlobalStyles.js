@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
   }
   html {
     background-image: url(${bg});
-    background-size: 450px;
+    background-size: 50px;
     background-attachment: fixed;
     font-size: 10px;
   }
