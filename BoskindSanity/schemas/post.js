@@ -1,7 +1,10 @@
+import { SiMicroDotBlog as icon } from "react-icons/si";
+
 export default {
   name: "post",
   title: "Post",
   type: "document",
+  icon,
   fields: [
     {
       name: "title",

@@ -1,7 +1,10 @@
+import { GrSort as icon } from "react-icons/gr";
+
 export default {
   name: "category",
   title: "Category",
   type: "document",
+  icon,
   fields: [
     {
       name: "title",
