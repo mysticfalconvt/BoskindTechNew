@@ -69,6 +69,7 @@ export const query = graphql`
 
     lessons: allSanityVideo(
       filter: { unit: { slug: { current: { eq: $slug } } } }
+      sort: { fields: [lessonNumber], order: ASC }
     ) {
       nodes {
         name

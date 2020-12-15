@@ -15,6 +15,11 @@ export default {
       description: 'What is the name of the video',
     },
     {
+      name: 'lessonNumber',
+      title: 'Lesson Number',
+      type: 'number',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
