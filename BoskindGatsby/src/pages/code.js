@@ -2,11 +2,12 @@ import { Link } from 'gatsby';
 import React from 'react';
 import { HomePageGrid } from '../styles/Grids';
 
-export default function HomePage() {
+export default function Code() {
   return (
     <div className="center">
       <HomePageGrid>
-        <p> stuff</p>
+        <Link to="/code/etchASketch">Etch A Sketch</Link>
+        <Link to="/fizzBuzz">Fizz Buzz</Link>
       </HomePageGrid>
     </div>
   );

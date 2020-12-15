@@ -90,7 +90,7 @@ export default function Nav() {
           <Link to="/blog">Blog</Link>
         </li>
         <li>
-          <Link to="/gamesStuff">Games and Stuff</Link>
+          <Link to="/code">Code Projects</Link>
         </li>
       </ul>
     </NavStyles>
