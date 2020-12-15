@@ -17,7 +17,6 @@ function isFizzBuzz(number) {
 
 function FizzBuzz(number, tableName) {
   for (i = 1; i <= number; i++) {
-    console.log(isFizzBuzz(i));
     const newRow = document.createElement('tr');
     const itemOne = document.createElement('td');
     const FBItem = document.createElement('td');
@@ -29,7 +28,7 @@ function FizzBuzz(number, tableName) {
   }
 }
 FBRange.addEventListener('keydown', function (e) {
-  if (e.keyCode == 13) {
+  if (e.key == 'Enter') {
     FBTable.innerHTML = '';
     FizzBuzz(parseInt(FBRange.value), FBTable);
   }

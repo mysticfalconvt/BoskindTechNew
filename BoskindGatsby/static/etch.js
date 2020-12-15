@@ -20,7 +20,6 @@ ctx.stroke();
 
 // Draw function
 function draw({ key }) {
-  console.log(key);
   ctx.beginPath();
   ctx.moveTo(x, y);
   hue += 10;
@@ -53,13 +52,11 @@ function handleKey(e) {
 }
 // clear / shake function
 function shakeTheScreen() {
-  console.log('sdfasdfasf');
   canvas.classList.add('shake');
   canvas.addEventListener(
     'animationend',
     function () {
       canvas.classList.remove('shake');
-      console.log('dfghdhgfd');
       ctx.clearRect(0, 0, width, height);
     },
     { once: true }
