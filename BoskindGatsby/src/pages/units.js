@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import SEO from '../components/SEO';
 import UnitList from '../components/UnitList';
 
-export default function PizzasPage({ data, pageContext }) {
+export default function UnitsPage({ data, pageContext }) {
   const units = data.units.nodes;
   return (
     <>
