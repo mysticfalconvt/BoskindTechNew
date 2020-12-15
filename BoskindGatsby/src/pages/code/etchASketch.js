@@ -45,9 +45,6 @@ const EtchStyles = styled.div`
 export default function etchASketch() {
   return (
     <>
-      <Helmet>
-        <script src={withPrefix('etch.js')} type="text/javascript" />
-      </Helmet>
       <EtchStyles className="canvasWrap">
         <canvas width="1600" height="1000" id="etch-a-sketch" />
         <div className="buttons">
@@ -56,6 +53,7 @@ export default function etchASketch() {
           </button>
         </div>
       </EtchStyles>
+      <script src={withPrefix('etch.js')} type="text/javascript" />
     </>
   );
 }

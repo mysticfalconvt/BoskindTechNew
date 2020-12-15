@@ -24,7 +24,7 @@ function ShowLink({ linkInfo }) {
   );
 }
 
-export default function LinksPage({ data, pageContext }) {
+export default function LinksPage({ data }) {
   const links = data.links.nodes;
 
   return (
