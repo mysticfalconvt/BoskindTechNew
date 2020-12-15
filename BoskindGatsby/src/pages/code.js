@@ -26,6 +26,7 @@ export default function Code() {
       <HomePageGrid>
         <Link to="/code/etchASketch">Etch A Sketch</Link>
         <Link to="/code/fizzBuzz">Fizz Buzz</Link>
+        <Link to="/code/colorPickerGame">Color Picker Game</Link>
       </HomePageGrid>
       <YodaStyles>
         <img src="/babyYoda.png" alt="yoda" height="200" className="turt" />

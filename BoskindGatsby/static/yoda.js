@@ -6,7 +6,6 @@ let flipped = false;
 let rotate = 0;
 console.log('connected!!!');
 function handleKeyDown(event) {
-  console.log(event);
   // if its not an arrow key, we dont care
   if (!event.key.includes('Arrow')) {
     return;
