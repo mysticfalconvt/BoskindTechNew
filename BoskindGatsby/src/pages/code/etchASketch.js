@@ -3,14 +3,15 @@ import { withPrefix } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
-const etchStyles = styled.div`
+const EtchStyles = styled.div`
   canvas {
-    border: 30px solid #e80000;
+    border: 30px solid var(--red);
     border-radius: 10px;
     /* Set the width and height to half the actual size so it doesn't look pixelated */
     width: 800px;
     height: 500px;
     background: white;
+    align-items: center;
   }
 
   canvas.shake {
@@ -47,14 +48,14 @@ export default function etchASketch() {
       <Helmet>
         <script src={withPrefix('etch.js')} type="text/javascript" />
       </Helmet>
-      <etchStyles className="canvasWrap">
-        <canvas width="1000" height="600" id="etch-a-sketch" />
+      <EtchStyles className="canvasWrap">
+        <canvas width="1600" height="1000" id="etch-a-sketch" />
         <div className="buttons">
           <button className="shake" type="button">
             Shake!
           </button>
         </div>
-      </etchStyles>
+      </EtchStyles>
     </>
   );
 }
