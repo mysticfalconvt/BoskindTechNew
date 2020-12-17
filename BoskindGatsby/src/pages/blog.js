@@ -5,7 +5,8 @@ import Img from 'gatsby-image';
 import BlogPost from '../components/BlogPost';
 
 const SingleBlockCardStyles = styled.div`
-  background: red;
+  background: grey;
+  padding: 20px;
 `;
 
 const BlogGridStyles = styled.div`
@@ -16,16 +17,16 @@ const BlogGridStyles = styled.div`
 `;
 
 function SingleBlogCard({ singleBlog }) {
-  function truncate(str, no_words) {
-    return str.split(' ').splice(0, no_words).join(' ');
-  }
-  const shortBlog = truncate('this is my testing text', 10);
   return (
     <SingleBlockCardStyles>
       <h2>{singleBlog.title}</h2>
       <Img fluid={singleBlog.mainImage.asset.fluid} />
-
-      <p>{shortBlog}</p>
+      {singleBlog.categories.map((category) => (
+        <div key={category.title}>
+          <h4>{category.title}</h4>
+          <p>{category.description}</p>
+        </div>
+      ))}
     </SingleBlockCardStyles>
   );
 }
@@ -33,12 +34,13 @@ function SingleBlogCard({ singleBlog }) {
 export default function blog({ data }) {
   return (
     <div>
-      <p> The blog page goes here</p>
+      <p>Latest Blog Post</p>
+      <BlogPost blog={data.blogs.nodes[0]} />
       <BlogGridStyles>
         {data.blogs.nodes.map((singleBlog) => (
           <div key={singleBlog.id}>
             <SingleBlogCard singleBlog={singleBlog} />
-            <BlogPost blog={singleBlog} />
+            {/* <BlogPost blog={singleBlog} /> */}
           </div>
         ))}
       </BlogGridStyles>
@@ -52,22 +54,14 @@ export const query = graphql`
       nodes {
         title
         id
-        body {
-          children {
-            _key
-            _type
-            text
-            marks
-          }
-          style
-          list
-          _rawChildren
-          _key
-          _type
+        categories {
+          title
+          description
         }
         author {
           name
         }
+        _rawBody
         mainImage {
           asset {
             fluid(maxWidth: 500) {
