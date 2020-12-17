@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
+import BlogPost from '../components/BlogPost';
 
 const SingleBlockCardStyles = styled.div`
   background: red;
@@ -14,22 +15,16 @@ const BlogGridStyles = styled.div`
   grid-auto-rows: auto auto auto;
 `;
 
-function SingleBlogCard({ blog }) {
+function SingleBlogCard({ singleBlog }) {
   function truncate(str, no_words) {
     return str.split(' ').splice(0, no_words).join(' ');
   }
-  //   console.log(blog.body);
   const shortBlog = truncate('this is my testing text', 10);
   return (
     <SingleBlockCardStyles>
-      <h2>{blog.title}</h2>
-      <Img fluid={blog.mainImage.asset.fluid} />
-      <p>
-        {blog.body.map((test) => {
-          console.log(test);
-          return <p>asdf</p>;
-        })}
-      </p>
+      <h2>{singleBlog.title}</h2>
+      <Img fluid={singleBlog.mainImage.asset.fluid} />
+
       <p>{shortBlog}</p>
     </SingleBlockCardStyles>
   );
@@ -40,8 +35,11 @@ export default function blog({ data }) {
     <div>
       <p> The blog page goes here</p>
       <BlogGridStyles>
-        {data.blogs.nodes.map((blog) => (
-          <SingleBlogCard blog={blog} key={blog.id} />
+        {data.blogs.nodes.map((singleBlog) => (
+          <div key={singleBlog.id}>
+            <SingleBlogCard singleBlog={singleBlog} />
+            <BlogPost blog={singleBlog} />
+          </div>
         ))}
       </BlogGridStyles>
     </div>
@@ -56,9 +54,16 @@ export const query = graphql`
         id
         body {
           children {
+            _key
+            _type
             text
             marks
           }
+          style
+          list
+          _rawChildren
+          _key
+          _type
         }
         author {
           name
