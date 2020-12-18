@@ -5,7 +5,6 @@ const shakeButton = document.querySelector('.shake');
 const MOVE_AMOUNT = 15;
 // setup canvas for drawing
 const { width, height } = canvas;
-
 let x = Math.floor(Math.random() * width);
 let y = Math.floor(Math.random() * height);
 let hue = Math.floor(Math.random() * 350);

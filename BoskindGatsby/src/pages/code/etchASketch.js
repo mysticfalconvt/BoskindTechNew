@@ -53,7 +53,9 @@ export default function etchASketch() {
           </button>
         </div>
       </EtchStyles>
-      <script src={withPrefix('etch.js')} type="text/javascript" />
+      <Helmet>
+        <script src={withPrefix('etch.js')} type="text/javascript" />
+      </Helmet>
     </>
   );
 }

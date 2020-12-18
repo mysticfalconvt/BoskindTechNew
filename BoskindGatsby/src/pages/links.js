@@ -12,7 +12,6 @@ const LinkGridStyles = styled.div`
 `;
 
 function ShowLink({ linkInfo }) {
-  console.log(linkInfo);
   return (
     <>
       <a href={linkInfo.url}>

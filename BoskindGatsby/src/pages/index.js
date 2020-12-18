@@ -2,9 +2,9 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { SingleBlogCard } from '../components/BlogPost';
 import { HomePageGrid } from '../styles/Grids';
+import Calculator from '../components/Calculator';
 
 export default function HomePage({ data }) {
-  console.log(data);
   return (
     <div className="center">
       <h1>The Best Math Teacher Around</h1>
@@ -13,6 +13,7 @@ export default function HomePage({ data }) {
         <Link to="/blog">
           <SingleBlogCard singleBlog={data.blogs.nodes[0]} />
         </Link>
+        <Calculator className="center" />
       </HomePageGrid>
     </div>
   );

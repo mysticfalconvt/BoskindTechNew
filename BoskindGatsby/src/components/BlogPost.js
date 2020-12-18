@@ -51,7 +51,7 @@ const SingleBlockCardStyles = styled.div`
 export function SingleBlogCard({ singleBlog }) {
   return (
     <SingleBlockCardStyles>
-      <h2>{singleBlog.title}</h2>
+      <h2 className="tilt">{singleBlog.title}</h2>
       <Img fluid={singleBlog.mainImage.asset.fluid} />
       <h4>Categories:</h4>
       {singleBlog.categories.map((category) => (

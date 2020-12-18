@@ -4,7 +4,6 @@ let y = 0;
 const speed = 50;
 let flipped = false;
 let rotate = 0;
-console.log('connected!!!');
 function handleKeyDown(event) {
   // if its not an arrow key, we dont care
   if (!event.key.includes('Arrow')) {
