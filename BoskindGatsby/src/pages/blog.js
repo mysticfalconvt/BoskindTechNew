@@ -2,12 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import BlogPost from '../components/BlogPost';
-
-const SingleBlockCardStyles = styled.div`
-  background: grey;
-  padding: 20px;
-`;
+import BlogPost, { SingleBlogCard } from '../components/BlogPost';
 
 const BlogGridStyles = styled.div`
   display: grid;
@@ -16,31 +11,16 @@ const BlogGridStyles = styled.div`
   grid-auto-rows: auto auto auto;
 `;
 
-function SingleBlogCard({ singleBlog }) {
-  return (
-    <SingleBlockCardStyles>
-      <h2>{singleBlog.title}</h2>
-      <Img fluid={singleBlog.mainImage.asset.fluid} />
-      {singleBlog.categories.map((category) => (
-        <div key={category.title}>
-          <h4>{category.title}</h4>
-          <p>{category.description}</p>
-        </div>
-      ))}
-    </SingleBlockCardStyles>
-  );
-}
-
 export default function blog({ data }) {
   return (
     <div>
       <p>Latest Blog Post</p>
       <BlogPost blog={data.blogs.nodes[0]} />
+      <h4 className="center">Previous Blog Posts</h4>
       <BlogGridStyles>
         {data.blogs.nodes.map((singleBlog) => (
           <div key={singleBlog.id}>
             <SingleBlogCard singleBlog={singleBlog} />
-            {/* <BlogPost blog={singleBlog} /> */}
           </div>
         ))}
       </BlogGridStyles>
@@ -61,6 +41,10 @@ export const query = graphql`
         author {
           name
         }
+        slug {
+          current
+        }
+        publishedAt
         _rawBody
         mainImage {
           asset {

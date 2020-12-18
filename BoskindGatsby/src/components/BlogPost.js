@@ -14,12 +14,34 @@ const BlogTitleStyles = styled.h2`
 `;
 
 export default function BlogPost({ blog }) {
-  console.log(blog._rawBody);
+  const publishedDate = new Date(blog.publishedAt);
   return (
     <div>
+      <h3>{publishedDate.toDateString()}</h3>
       <Img fluid={blog.mainImage.asset.fluid} />
       <BlogTitleStyles>{blog.title}</BlogTitleStyles>
+
       <PortableText blocks={blog._rawBody} />
     </div>
+  );
+}
+
+const SingleBlockCardStyles = styled.div`
+  background: grey;
+  padding: 20px;
+`;
+
+export function SingleBlogCard({ singleBlog }) {
+  return (
+    <SingleBlockCardStyles>
+      <h2>{singleBlog.title}</h2>
+      <Img fluid={singleBlog.mainImage.asset.fluid} />
+      {singleBlog.categories.map((category) => (
+        <div key={category.title}>
+          <h4>{category.title}</h4>
+          <p>{category.description}</p>
+        </div>
+      ))}
+    </SingleBlockCardStyles>
   );
 }
