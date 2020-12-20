@@ -8,6 +8,10 @@ const LessonGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(3, minmax(200px, 1fr));
+  @media (max-width: 800px) {
+    font-size: 2rem;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
 `;
 
 export default function SingleUnitPage({ data }) {
