@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby';
 import { SingleBlogCard } from '../components/BlogPost';
 import { HomePageGrid } from '../styles/Grids';
 import Calculator from '../components/Calculator';
+import SlopeCalculator from '../components/SlopeCalculator';
 
 export default function HomePage({ data }) {
   return (
@@ -14,6 +15,7 @@ export default function HomePage({ data }) {
           <SingleBlogCard singleBlog={data.blogs.nodes[0]} />
         </Link>
         <Calculator className="center" />
+        <SlopeCalculator />
       </HomePageGrid>
     </div>
   );
