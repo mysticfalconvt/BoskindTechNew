@@ -6,6 +6,7 @@ import styled from 'styled-components';
 const GameStyle = styled.div`
   padding: 20px 20px 400px 20px;
   background: var(--grey);
+  border-radius: 25px;
 `;
 
 const ColorPickerStyles = styled.div`
@@ -35,6 +36,7 @@ const ColorPickerStyles = styled.div`
     margin: 0;
     text-transform: uppercase;
     padding: 20px 0;
+    border-radius: 20px;
   }
 
   #colorDisplay {
@@ -47,7 +49,7 @@ const ColorPickerStyles = styled.div`
   }
 
   #stripe {
-    background: white;
+    background: var(--grey);
     height: 30px;
     text-align: center;
     color: black;
@@ -56,6 +58,8 @@ const ColorPickerStyles = styled.div`
   .selected {
     color: white;
     background: steelblue;
+    border-radius: 5px;
+    transform: rotate(-10deg);
   }
 
   button {
