@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
 const SlopeCalcStyles = styled.div`
   background: var(--grey);
   display: grid;
   border-radius: 10px;
+  padding: 10px;
   grid-template-columns: repeat(2, 1fr);
 `;
 
@@ -13,39 +14,28 @@ export default function SlopeCalculator() {
   const [y1Value, setY1Value] = useState(1);
   const [x2Value, setX2Value] = useState(1);
   const [y2Value, setY2Value] = useState(1);
-  const [slope, setSlope] = useState();
+  const [slope, updateSlope] = useState();
+  const [yInt, updateyInt] = useState();
+
+  useEffect(() => {
+    updateSlope((y2Value - y1Value) / (x2Value - x1Value));
+  }, [x1Value, x2Value, y1Value, y2Value]);
+
+  useEffect(() => {
+    updateyInt(y1Value - slope * x1Value);
+  });
 
   const onX1Change = (e) => {
     setX1Value(e.currentTarget.value);
-    setSlope(
-      Math.round(
-        100 * ((y2Value - y1Value) / (x2Value - e.currentTarget.value))
-      ) / 100
-    );
   };
   const onY1Change = (e) => {
     setY1Value(e.currentTarget.value);
-    setSlope(
-      Math.round(
-        100 * ((y2Value - e.currentTarget.value) / (x2Value - x1Value))
-      ) / 100
-    );
   };
   const onX2Change = (e) => {
     setX2Value(e.currentTarget.value);
-    setSlope(
-      Math.round(
-        100 * ((y2Value - y1Value) / (e.currentTarget.value - x1Value))
-      ) / 100
-    );
   };
   const onY2Change = (e) => {
     setY2Value(e.currentTarget.value);
-    setSlope(
-      Math.round(
-        100 * ((e.currentTarget.value - y1Value) / (x2Value - x1Value))
-      ) / 100
-    );
   };
   return (
     <SlopeCalcStyles>
@@ -69,13 +59,10 @@ export default function SlopeCalculator() {
           <span>)</span>
         </div>
       </div>
-      <p>
-        The slope of the line is: {slope} & the Y-Intercept is:
-        {y1Value - slope * x1Value}
-      </p>
+      <p>The slope of the line is: {slope}</p>
       <h2>
-        y={slope ? `${slope}x+` : ''}
-        {y1Value - slope * x1Value}
+        y={slope ? `${slope}x+` : ""}
+        {yInt}
       </h2>
     </SlopeCalcStyles>
   );
