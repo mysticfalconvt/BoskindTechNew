@@ -44,7 +44,8 @@ export default function BlogPost({ blog }) {
 }
 
 const SingleBlockCardStyles = styled.div`
-  background: grey;
+  background: var(--grey);
+  border-radius: 20px;
   padding: 20px;
 `;
 
