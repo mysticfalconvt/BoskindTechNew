@@ -10,6 +10,7 @@ const LogoStyles = styled.div`
   height: 30em;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   margin: 0;
+  animation: 1.5s ease-out 0s 1 slideDown;
   --borderSize: 1em;
   background: whitesmoke url(${stripes});
   background-size: 150em;
@@ -98,6 +99,14 @@ const LogoStyles = styled.div`
       --rotate: 12deg;
       --scale: 0.9;
       --translateY: 0.1em;
+    }
+  }
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-200%);
+    }
+    100% {
+      transform: translateY(-25%);
     }
   }
 `;

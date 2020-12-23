@@ -9,6 +9,14 @@ const LinkGridStyles = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 4rem;
   grid-auto-rows: auto auto auto;
+  a {
+    transition: 0.5s;
+    margin-top: 5px;
+    :hover {
+      transform: scale(1.1);
+      transition: 0.3s;
+    }
+  }
 `;
 
 function ShowLink({ linkInfo }) {

@@ -26,12 +26,19 @@ const NavStyles = styled.nav`
     order: 1;
     &:nth-child(1) {
       --rotate: 1deg;
+      animation: 1s ease-out 0s 1 slideRight;
     }
     &:nth-child(2) {
+      animation: 1s ease-out 0s 1 slideRight;
       --rotate: -2.5deg;
     }
     &:nth-child(4) {
+      animation: 1s ease-out 0s 1 slideLeft;
       --rotate: -1.5deg;
+    }
+    &:nth-child(5) {
+      animation: 1s ease-out 0s 1 slideLeft;
+      --rotate: -3.5deg;
     }
     &:hover {
       --rotate: 4deg;
@@ -68,6 +75,22 @@ const NavStyles = styled.nav`
   }
   @media (max-width: 500px) {
     --columns: 2;
+  }
+  @keyframes slideRight {
+    0% {
+      transform: translateX(-500%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+  @keyframes slideLeft {
+    0% {
+      transform: translateX(500%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
   }
 `;
 

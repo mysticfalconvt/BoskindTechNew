@@ -12,6 +12,14 @@ const LessonGrid = styled.div`
     font-size: 2rem;
     grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
+  h2 {
+    transform: rotate(-2deg);
+    transition: 0.2s;
+    :hover {
+      transition: 0.5s;
+      transform: rotate(5deg);
+    }
+  }
 `;
 
 export default function SingleUnitPage({ data }) {

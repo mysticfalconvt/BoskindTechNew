@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
     background-size: 50px;
     background-attachment: fixed;
     font-size: 10px;
+    
   }
 
   body {
@@ -53,13 +54,13 @@ const GlobalStyles = createGlobalStyle`
   }
   html {
     scrollbar-width: thin;
-    scrollbar-color: var(--red) var(--white);
+    scrollbar-color: var(--yellow) var(--white);
   }
   body::-webkit-scrollbar-track {
     background: var(--white);
   }
   body::-webkit-scrollbar-thumb {
-    background-color: var(--red) ;
+    background-color: var(--yellow) ;
     border-radius: 6px;
     border: 3px solid var(--white);
   }
@@ -69,6 +70,7 @@ const GlobalStyles = createGlobalStyle`
     height: 8px;
     background-image: url(${stripes});
     background-size: 1500px;
+    animation: 1s ease-out 0s 1 scaleIn;
   }
 
   img {
@@ -80,7 +82,14 @@ const GlobalStyles = createGlobalStyle`
     position: relative;
     display: inline-block;
   }
-
+  @keyframes scaleIn {
+    0% {
+      transform: scale(5);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
 `;
 
 export default GlobalStyles;
