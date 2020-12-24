@@ -11,6 +11,20 @@ export const HomePageGrid = styled.div`
   @media (max-width: 800px) {
     --columns: 1;
   }
+  div {
+    animation: 0.8s ease-out 0s 1 scaleIn;
+    @keyframes scaleIn {
+      0% {
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    :hover {
+      transform: scale(1.05);
+    }
+  }
 `;
 
 export const ItemsGrid = styled.div`

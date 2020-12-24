@@ -3,6 +3,7 @@ import PortableText from '@sanity/block-content-to-react';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 import urlBuilder from '@sanity/image-url';
+import { Link } from 'gatsby';
 
 const urlFor = (source) =>
   urlBuilder({ projectId: 'jzq9n05y', dataset: 'production' }).image(source);
@@ -47,21 +48,23 @@ const SingleBlockCardStyles = styled.div`
   background: var(--grey);
   border-radius: 20px;
   padding: 20px;
+  margin: auto;
 `;
 
 export function SingleBlogCard({ singleBlog }) {
   return (
     <SingleBlockCardStyles>
-      <h2 className="tilt">{singleBlog.title}</h2>
-      <Img fluid={singleBlog.mainImage.asset.fluid} />
-      <h4>Categories:</h4>
-      {singleBlog.categories.map((category) => (
-        <div key={category.title}>
-          <p>
-            {category.title} - {category.description}
-          </p>
-        </div>
-      ))}
+      <Link to={`/blog/${singleBlog.slug.current}`}>
+        <h2 className="tilt">{singleBlog.title}</h2>
+        <Img fluid={singleBlog.mainImage.asset.fluid} />
+        <h4>Categories:</h4>
+        {singleBlog.categories.map((category) => (
+          // <div key={category.title}>
+          <span>{category.title} </span>
+
+          // </div>
+        ))}
+      </Link>
     </SingleBlockCardStyles>
   );
 }

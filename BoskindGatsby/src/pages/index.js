@@ -11,11 +11,9 @@ export default function HomePage({ data }) {
       <h1>The Best Math Teacher Around</h1>
       <p>Calculating A New Digit Of π Every Single Day</p>
       <HomePageGrid>
-        <Link to="/blog">
-          <SingleBlogCard singleBlog={data.blogs.nodes[0]} />
-        </Link>
-        <Calculator className="center" />
         <SlopeCalculator />
+        <SingleBlogCard singleBlog={data.blogs.nodes[0]} />
+        <Calculator className="center" />
       </HomePageGrid>
     </div>
   );

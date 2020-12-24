@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const SlopeCalcStyles = styled.div`
   background: var(--grey);
@@ -7,6 +7,7 @@ const SlopeCalcStyles = styled.div`
   border-radius: 10px;
   padding: 10px;
   grid-template-columns: repeat(2, 1fr);
+  margin: auto;
 `;
 
 export default function SlopeCalculator() {
@@ -61,7 +62,7 @@ export default function SlopeCalculator() {
       </div>
       <p>The slope of the line is: {slope}</p>
       <h2>
-        y={slope ? `${slope}x+` : ""}
+        y={slope ? `${slope}x+` : ''}
         {yInt}
       </h2>
     </SlopeCalcStyles>
