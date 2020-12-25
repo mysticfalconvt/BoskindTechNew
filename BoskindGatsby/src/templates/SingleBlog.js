@@ -1,9 +1,12 @@
 import React from 'react';
 import BlogPost from '../components/BlogPost';
+import SEO from '../components/SEO';
+import blog from '../pages/blog';
 
 export default function SingleBlogPost({ data }) {
   return (
     <div>
+      <SEO title={data.blog.title} />
       <BlogPost blog={data.blog} />
     </div>
   );

@@ -4,10 +4,12 @@ import { SingleBlogCard } from '../components/BlogPost';
 import { HomePageGrid } from '../styles/Grids';
 import Calculator from '../components/Calculator';
 import SlopeCalculator from '../components/SlopeCalculator';
+import SEO from '../components/SEO';
 
 export default function HomePage({ data }) {
   return (
     <div className="center">
+      <SEO title="Boskind.Tech!!!" />
       <h1>The Best Math Teacher Around</h1>
       <p>Calculating A New Digit Of π Every Single Day</p>
       <HomePageGrid>

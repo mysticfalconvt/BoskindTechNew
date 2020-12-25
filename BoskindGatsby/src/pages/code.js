@@ -2,6 +2,7 @@ import { Link, withPrefix } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
+import SEO from '../components/SEO';
 import { HomePageGrid } from '../styles/Grids';
 
 const YodaStyles = styled.div`
@@ -32,6 +33,7 @@ export default function Code() {
       <Helmet>
         <script src={withPrefix('yoda.js')} type="text/javascript" />
       </Helmet>
+      <SEO title="Code Stuff!" />
       <HomePageGrid>
         <Link to="/code/etchASketch">Etch A Sketch</Link>
         <Link to="/code/fizzBuzz">Fizz Buzz</Link>

@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import BlogPost, { SingleBlogCard } from '../components/BlogPost';
+import SEO from '../components/SEO';
 
 const BlogGridStyles = styled.div`
   display: grid;
@@ -14,6 +15,7 @@ const BlogGridStyles = styled.div`
 export default function blog({ data }) {
   return (
     <div>
+      <SEO title="Blog Posts" />
       <p>Latest Blog Post</p>
       <BlogPost blog={data.blogs.nodes[0]} />
       <h4 className="center">Previous Blog Posts</h4>
