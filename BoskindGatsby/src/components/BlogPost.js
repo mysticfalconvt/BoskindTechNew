@@ -29,6 +29,8 @@ const BlogTitleStyles = styled.h2`
   transform: translateY(-3rem) rotate(-7deg);
   z-index: auto;
   display: block;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
 `;
 
 export default function BlogPost({ blog }) {
@@ -64,6 +66,7 @@ export function SingleBlogCard({ singleBlog }) {
 
           // </div>
         ))}
+        <p>{singleBlog.publishedAt}</p>
       </Link>
     </SingleBlockCardStyles>
   );

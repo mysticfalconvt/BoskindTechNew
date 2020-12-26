@@ -32,7 +32,7 @@ export default function blog({ data }) {
 
 export const query = graphql`
   query blogsQuery {
-    blogs: allSanityPost {
+    blogs: allSanityPost(sort: { fields: [publishedAt], order: DESC }) {
       nodes {
         title
         id
@@ -46,7 +46,7 @@ export const query = graphql`
         slug {
           current
         }
-        publishedAt
+        publishedAt(formatString: "MM-DD-YYYY")
         _rawBody
         mainImage {
           asset {
