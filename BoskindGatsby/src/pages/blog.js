@@ -6,6 +6,7 @@ import BlogPost, { SingleBlogCard } from '../components/BlogPost';
 import SEO from '../components/SEO';
 
 const BlogGridStyles = styled.div`
+  animation: 0.5s ease-out 0s 1 fadeIn;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 4rem;

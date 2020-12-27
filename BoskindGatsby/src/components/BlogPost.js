@@ -34,10 +34,9 @@ const BlogTitleStyles = styled.h2`
 `;
 
 export default function BlogPost({ blog }) {
-  const publishedDate = new Date(blog.publishedAt);
   return (
     <div>
-      <h3>{publishedDate.toDateString()}</h3>
+      <h3>{blog.publishedAt}</h3>
       <Img fluid={blog.mainImage.asset.fluid} />
       <BlogTitleStyles>{blog.title}</BlogTitleStyles>
 

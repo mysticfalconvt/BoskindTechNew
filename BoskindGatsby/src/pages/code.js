@@ -15,7 +15,7 @@ const YodaStyles = styled.div`
     transform: translateX(var(--x)) translateY(var(--y)) rotateY(var(--rotateX))
       rotate(var(--rotate));
     transition: transform 0.2s;
-    animation: 1s ease-out 0s 1 scaleIn;
+    animation: 1s ease-out 0s 1 fadeIn;
     @keyframes scaleIn {
       0% {
         transform: scale(0);

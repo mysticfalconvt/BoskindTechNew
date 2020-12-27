@@ -79,17 +79,21 @@ const NavStyles = styled.nav`
   @keyframes slideRight {
     0% {
       transform: translateX(-500%);
+      opacity: 0;
     }
     100% {
       transform: translateX(0%);
+      opacity: 1;
     }
   }
   @keyframes slideLeft {
     0% {
       transform: translateX(500%);
+      opacity: 0;
     }
     100% {
       transform: translateX(0%);
+      opacity: 1;
     }
   }
 `;

@@ -27,7 +27,7 @@ export const query = graphql`
       slug {
         current
       }
-      publishedAt
+      publishedAt(formatString: "MM-DD-YYYY")
       _rawBody
       mainImage {
         asset {

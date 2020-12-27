@@ -104,8 +104,10 @@ const LogoStyles = styled.div`
   @keyframes slideDown {
     0% {
       transform: translateY(-200%);
+      opacity: 0;
     }
     100% {
+      opacity: 1;
       transform: translateY(-25%);
     }
   }

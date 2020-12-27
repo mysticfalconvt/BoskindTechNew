@@ -12,6 +12,7 @@ const UnitGridStyles = styled.div`
 
 const UnitStyles = styled.div`
   display: grid;
+  animation: 0.5s ease-out 0s 1 fadeIn;
   /* Take your row sizing not from the pizzaStyles div, but from the  PizzaGridStyles grid */
   @supports not (grid-template-rows: subgrid) {
     --rows: auto auto 1fr;
@@ -22,6 +23,21 @@ const UnitStyles = styled.div`
   h2,
   p {
     margin: 0;
+  }
+  :hover {
+    transform: scale(1.02);
+    transition: 0.2s;
+    text-shadow: 0 0 3px var(--red);
+  }
+  @keyframes fadeIn {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 `;
 

@@ -7,6 +7,7 @@ import SEO from '../components/SEO';
 const LessonGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
+  animation: 0.5s ease-out 0s 1 fadeIn;
   grid-template-columns: repeat(3, minmax(200px, 1fr));
   @media (max-width: 800px) {
     font-size: 2rem;
@@ -18,6 +19,7 @@ const LessonGrid = styled.div`
     :hover {
       transition: 0.5s;
       transform: rotate(5deg);
+      text-shadow: 0 0 5px var(--yellow);
     }
   }
 `;
