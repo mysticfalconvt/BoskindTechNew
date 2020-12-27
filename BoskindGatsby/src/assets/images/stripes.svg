@@ -4,7 +4,7 @@
 
         <defs>
             <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
-              <path d="M -1,3 l 6,0" stroke="#FF4949" stroke-width="0.9"/>
+              <path d="M -1,3 l 6,0" stroke="#ffc600" stroke-width="02"/>
             </pattern>
 
         </defs>

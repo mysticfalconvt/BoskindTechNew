@@ -11,7 +11,7 @@ const SiteBorderStyles = styled.div`
   max-width: 2000px;
   margin: 12rem;
   margin-top: clamp(2rem, 10vw, 12rem);
-  background: white url(${stripes});
+  background: var(--grey) url(${stripes});
   background-size: 1500px;
   padding: 5px;
   padding: clamp(5px, 1vw, 25px);

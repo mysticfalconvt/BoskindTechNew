@@ -36,7 +36,7 @@ export default function LinksPage({ data }) {
 
   return (
     <>
-      <SEO title="Math Units" />
+      <SEO title="Important Links" />
       <h1 className="center">Important Links</h1>
       <LinkGridStyles>
         {links.map((link) => (

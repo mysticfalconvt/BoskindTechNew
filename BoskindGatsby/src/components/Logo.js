@@ -14,7 +14,7 @@ const LogoStyles = styled.div`
   --borderSize: 1em;
   background: whitesmoke url(${stripes});
   background-size: 150em;
-  border: var(--borderSize) solid var(--red);
+  /* border: var(--borderSize) solid var(--red); */
   display: flex;
   .inner {
     margin: var(--borderSize);
