@@ -2,6 +2,7 @@ import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 const UnitGridStyles = styled.div`
   display: grid;
@@ -44,14 +45,14 @@ const UnitStyles = styled.div`
 function SingleUnit({ unit }) {
   return (
     <UnitStyles>
-      <Link to={`/unit/${unit.slug.current}`}>
+      <AniLink cover to={`/unit/${unit.slug.current}`}>
         <p className="center">
           Grade {unit.GradeLevel} - Unit #{unit.UnitNumber}
         </p>
         <Img fluid={unit.image.asset.fluid} />
 
         <h3 className="center">{unit.name}</h3>
-      </Link>
+      </AniLink>
     </UnitStyles>
   );
 }
