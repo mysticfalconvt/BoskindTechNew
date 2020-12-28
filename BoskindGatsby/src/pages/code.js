@@ -36,13 +36,13 @@ export default function Code() {
       </Helmet>
       <SEO title="Code Stuff!" />
       <HomePageGrid>
-        <AniLink cover to="/code/etchASketch">
+        <AniLink fade to="/code/etchASketch">
           Etch A Sketch
         </AniLink>
-        <AniLink cover to="/code/fizzBuzz">
+        <AniLink fade to="/code/fizzBuzz">
           Fizz Buzz
         </AniLink>
-        <AniLink cover to="/code/colorPickerGame">
+        <AniLink fade to="/code/colorPickerGame">
           Color Picker Game
         </AniLink>
       </HomePageGrid>

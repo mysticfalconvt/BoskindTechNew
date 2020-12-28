@@ -45,7 +45,7 @@ const UnitStyles = styled.div`
 function SingleUnit({ unit }) {
   return (
     <UnitStyles>
-      <AniLink cover to={`/unit/${unit.slug.current}`}>
+      <AniLink fade to={`/unit/${unit.slug.current}`}>
         <p className="center">
           Grade {unit.GradeLevel} - Unit #{unit.UnitNumber}
         </p>

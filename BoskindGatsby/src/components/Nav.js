@@ -104,27 +104,27 @@ export default function Nav() {
     <NavStyles>
       <ul>
         <li>
-          <AniLink cover to="/units">
+          <AniLink fade duration={0.8} bg="rgba(247, 200, 68,1)" to="/units">
             Illustrative Math
           </AniLink>
         </li>
         <li>
-          <AniLink cover to="/links">
+          <AniLink fade to="/links">
             Helpful Links
           </AniLink>
         </li>
         <li className="logo-item">
-          <AniLink cover to="/">
+          <AniLink fade to="/">
             <Logo />
           </AniLink>
         </li>
         <li>
-          <AniLink cover to="/blog">
+          <AniLink fade to="/blog">
             Blog
           </AniLink>
         </li>
         <li>
-          <AniLink cover to="/code">
+          <AniLink fade to="/code">
             Code Projects
           </AniLink>
         </li>
