@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import { SingleBlogCard } from '../components/BlogPost';
 import { HomePageGrid } from '../styles/Grids';
 import Calculator from '../components/Calculator';
@@ -12,6 +13,7 @@ export default function HomePage({ data }) {
       <SEO title="Boskind.Tech!!!" />
       <h1>The Best Math Teacher Around</h1>
       <p>Calculating A New Digit Of π Every Single Day</p>
+
       <HomePageGrid>
         <SlopeCalculator />
         <SingleBlogCard singleBlog={data.blogs.nodes[0]} />

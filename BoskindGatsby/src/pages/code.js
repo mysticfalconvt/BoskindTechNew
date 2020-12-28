@@ -1,4 +1,5 @@
 import { Link, withPrefix } from 'gatsby';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
@@ -35,9 +36,15 @@ export default function Code() {
       </Helmet>
       <SEO title="Code Stuff!" />
       <HomePageGrid>
-        <Link to="/code/etchASketch">Etch A Sketch</Link>
-        <Link to="/code/fizzBuzz">Fizz Buzz</Link>
-        <Link to="/code/colorPickerGame">Color Picker Game</Link>
+        <AniLink fade to="/code/etchASketch">
+          Etch A Sketch
+        </AniLink>
+        <AniLink fade to="/code/fizzBuzz">
+          Fizz Buzz
+        </AniLink>
+        <AniLink fade to="/code/colorPickerGame">
+          Color Picker Game
+        </AniLink>
       </HomePageGrid>
       <YodaStyles>
         <img src="/babyYoda.png" alt="yoda" height="200" className="turt" />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import Logo from './Logo';
 
 const NavStyles = styled.nav`
@@ -103,21 +104,29 @@ export default function Nav() {
     <NavStyles>
       <ul>
         <li>
-          <Link to="/units">Illustrative Math</Link>
+          <AniLink fade duration={0.8} bg="rgba(247, 200, 68,1)" to="/units">
+            Illustrative Math
+          </AniLink>
         </li>
         <li>
-          <Link to="/links">Helpful Links</Link>
+          <AniLink fade to="/links">
+            Helpful Links
+          </AniLink>
         </li>
         <li className="logo-item">
-          <Link to="/">
+          <AniLink fade to="/">
             <Logo />
-          </Link>
+          </AniLink>
         </li>
         <li>
-          <Link to="/blog">Blog</Link>
+          <AniLink fade to="/blog">
+            Blog
+          </AniLink>
         </li>
         <li>
-          <Link to="/code">Code Projects</Link>
+          <AniLink fade to="/code">
+            Code Projects
+          </AniLink>
         </li>
       </ul>
     </NavStyles>
