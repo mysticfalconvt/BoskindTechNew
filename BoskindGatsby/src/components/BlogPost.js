@@ -2,25 +2,9 @@ import React from 'react';
 import PortableText from '@sanity/block-content-to-react';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
-import urlBuilder from '@sanity/image-url';
 import { Link } from 'gatsby';
 import AuthorDisplay from './AuthorDisplay';
-
-const urlFor = (source) =>
-  urlBuilder({ projectId: 'jzq9n05y', dataset: 'production' }).image(source);
-
-const serializer = {
-  types: {
-    image: (props) => (
-      <figure>
-        <img
-          src={urlFor(props.node.asset).width(600).url()}
-          alt={props.node.alt}
-        />
-      </figure>
-    ),
-  },
-};
+import serializer from '../utils/serializer';
 
 const BlogTitleStyles = styled.h2`
   text-align: center;
@@ -56,14 +40,14 @@ const SingleBlockCardStyles = styled.div`
 
 export function SingleBlogCard({ singleBlog }) {
   return (
-    <SingleBlockCardStyles>
+    <SingleBlockCardStyles key={singleBlog.slug.current}>
       <Link to={`/blog/${singleBlog.slug.current}`}>
         <h2 className="tilt">{singleBlog.title}</h2>
         <Img fluid={singleBlog.mainImage.asset.fluid} />
         <h4>Categories:</h4>
         {singleBlog.categories.map((category) => (
           // <div key={category.title}>
-          <span>{category.title} </span>
+          <span key={category.title}>{category.title} </span>
 
           // </div>
         ))}

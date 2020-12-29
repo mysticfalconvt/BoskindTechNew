@@ -43,6 +43,14 @@ export const query = graphql`
         }
         author {
           name
+          _rawBio
+          image {
+            asset {
+              fluid(maxWidth: 500) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
         }
         slug {
           current

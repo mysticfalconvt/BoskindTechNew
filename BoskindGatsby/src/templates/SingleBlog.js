@@ -2,7 +2,6 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import BlogPost from '../components/BlogPost';
 import SEO from '../components/SEO';
-import blog from '../pages/blog';
 
 export default function SingleBlogPost({ data }) {
   return (
@@ -24,6 +23,14 @@ export const query = graphql`
       }
       author {
         name
+        _rawBio
+        image {
+          asset {
+            fluid(maxWidth: 500) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
       }
       slug {
         current
