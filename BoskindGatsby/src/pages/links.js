@@ -38,8 +38,8 @@ export default function LinksPage({ data }) {
 
   return (
     <>
-      <SEO title="Important Links" />
-      <h1 className="center">Important Links</h1>
+      <SEO title="Helpful Links" />
+      <h1 className="center">Helpful Links</h1>
       <LinkGridStyles>
         {links.map((link) => (
           <ShowLink linkInfo={link} key={link.name} />
