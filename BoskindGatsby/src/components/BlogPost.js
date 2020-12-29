@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 import styled from 'styled-components';
 import urlBuilder from '@sanity/image-url';
 import { Link } from 'gatsby';
+import AuthorDisplay from './AuthorDisplay';
 
 const urlFor = (source) =>
   urlBuilder({ projectId: 'jzq9n05y', dataset: 'production' }).image(source);
@@ -41,6 +42,7 @@ export default function BlogPost({ blog }) {
       <BlogTitleStyles>{blog.title}</BlogTitleStyles>
 
       <PortableText blocks={blog._rawBody} serializers={serializer} />
+      <AuthorDisplay blog={blog} />
     </div>
   );
 }

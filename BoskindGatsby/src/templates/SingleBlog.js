@@ -1,3 +1,4 @@
+import { graphql } from 'gatsby';
 import React from 'react';
 import BlogPost from '../components/BlogPost';
 import SEO from '../components/SEO';

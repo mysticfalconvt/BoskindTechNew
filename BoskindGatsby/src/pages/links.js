@@ -9,8 +9,8 @@ const LinkGridStyles = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 4rem;
   grid-auto-rows: auto auto auto;
-  animation: 0.5s ease-out 0s 1 fadeIn;
   a {
+    animation: 0.5s ease-out 0s 1 fadeIn;
     transition: 0.5s;
     margin-top: 5px;
     :hover {
