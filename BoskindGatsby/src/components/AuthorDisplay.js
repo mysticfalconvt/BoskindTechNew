@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PortableText from '@sanity/block-content-to-react';
 import Img from 'gatsby-image';
@@ -32,7 +32,11 @@ const AuthorStyles = styled.div`
   }
 `;
 export default function AuthorDisplay({ blog }) {
-  const url = String(window.location.href);
+  const [url, setUrl] = useState('');
+  useEffect(() => {
+    // document.title = `You clicked ${count} times`;
+    setUrl(String(window.location.href));
+  }, []);
   if (url.includes(blog.slug.current)) {
     return (
       <AuthorStyles>
