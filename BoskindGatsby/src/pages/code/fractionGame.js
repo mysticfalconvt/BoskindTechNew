@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Dice from '../../components/Dice';
 import SEO from '../../components/SEO';
 
 const GameboardStyles = styled.div`
@@ -31,7 +32,7 @@ const GameboardStyles = styled.div`
     background: var(--grey);
     border-radius: 3rem;
     padding: 2rem;
-    margin: 2rem;
+    /* margin: 2rem; */
   }
   input {
     width: 50px;
@@ -39,6 +40,11 @@ const GameboardStyles = styled.div`
 
   button {
     text-align: center;
+    max-width: max-content;
+    max-height: 8rem;
+    justify-self: center;
+
+    box-shadow: var(--cast) var(--cast) 0 black;
   }
   @media (max-width: 600px) {
     grid-gap: 1rem;
@@ -51,6 +57,9 @@ const GameboardStyles = styled.div`
     input {
       width: 30px;
     }
+  }
+  .activeTurn {
+    background: orange;
   }
 `;
 
@@ -75,95 +84,173 @@ function checkSign({ right, left, sign, setSign }) {
   setSign(greater);
 }
 
-function LeftUserboard({ left, setLeft }) {
+function LeftUserboard({
+  left,
+  setLeft,
+  dice,
+  choosing,
+  setChoosing,
+  turn,
+  setTurn,
+}) {
   return (
-    <div>
+    <div className={turn === 'left' ? 'activeTurn' : 'NotActive'}>
       <div className="fraction">
-        <input
-          name="leftNumerator"
-          type="number"
-          value={left.numerator}
-          min="1"
-          onChange={(e) => setLeft({ ...left, numerator: e.target.value })}
-        />
+        <div
+          onClick={() => {
+            if (choosing && left.numerator === 0) {
+              setLeft({ ...left, numerator: dice });
+              setChoosing(!choosing);
+              setTurn('right');
+            }
+          }}
+        >
+          {left.numerator}
+        </div>
+
         <div className="fractionBar" />
-        <input
-          name="leftdenominator"
-          type="number"
-          value={left.denominator}
-          min="1"
-          onChange={(e) => setLeft({ ...left, denominator: e.target.value })}
-        />
-      </div>
-      <div>
-        Junk Pile
-        <input
-          name="leftJunk"
-          type="number"
-          value={left.junk}
-          min="1"
-          onChange={(e) => setLeft({ ...left, junk: e.target.value })}
-        />
+        <div
+          onClick={() => {
+            if (choosing && left.denominator === 0) {
+              setLeft({ ...left, denominator: dice });
+              setChoosing(!choosing);
+              setTurn('right');
+            }
+          }}
+        >
+          {left.denominator}
+        </div>
+        <div>
+          Junk Pile
+          <div
+            onClick={() => {
+              if (choosing && left.junk === 0) {
+                setLeft({ ...left, junk: dice });
+                setChoosing(!choosing);
+                setTurn('right');
+              }
+            }}
+          >
+            {left.junk}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-function RightUserboard({ right, setRight }) {
+function RightUserboard({
+  right,
+  setRight,
+  dice,
+  choosing,
+  setChoosing,
+  turn,
+  setTurn,
+}) {
   return (
-    <div>
+    <div className={turn === 'right' ? 'activeTurn' : 'NotActive'}>
       <div className="fraction">
-        <input
-          name="rightNumerator"
-          type="number"
-          value={right.numerator}
-          min="1"
-          onChange={(e) => setRight({ ...right, numerator: e.target.value })}
-        />
+        <div
+          onClick={() => {
+            if (choosing && right.numerator === 0) {
+              setRight({ ...right, numerator: dice });
+              setChoosing(!choosing);
+              setTurn('left');
+            }
+          }}
+        >
+          {right.numerator}
+        </div>
+
         <div className="fractionBar" />
-        <input
-          name="rightdenominator"
-          type="number"
-          value={right.denominator}
-          min="1"
-          onChange={(e) => setRight({ ...right, denominator: e.target.value })}
-        />
-      </div>
-      <div>
-        Junk Pile
-        <input
-          name="rightJunk"
-          type="number"
-          value={right.junk}
-          min="0"
-          onChange={(e) => setRight({ ...right, junk: e.target.value })}
-        />
+        <div
+          onClick={() => {
+            if (choosing && right.denominator === 0) {
+              setRight({ ...right, denominator: dice });
+              setChoosing(!choosing);
+              setTurn('left');
+            }
+          }}
+        >
+          {right.denominator}
+        </div>
+        <div>
+          Junk Pile
+          <div
+            onClick={() => {
+              if (choosing && right.junk === 0) {
+                setRight({ ...right, junk: dice });
+                setChoosing(!choosing);
+                setTurn('left');
+              }
+            }}
+          >
+            {right.junk}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-function Inequality({ sign, setSign, left, right }) {
-  console.log(sign);
+function Inequality({ sign }) {
   return <h1 className="sign">{sign}</h1>;
 }
 
+function DiceRoller({ dice, setDice, choosing, setChoosing }) {
+  return (
+    <div>
+      <Dice
+        dice={dice}
+        setDice={setDice}
+        clickable={!choosing}
+        setChoosing={setChoosing}
+      />
+    </div>
+  );
+}
 export default function fractionGame() {
   const [left, setLeft] = useState({ junk: 0, numerator: 0, denominator: 0 });
   const [right, setRight] = useState({ junk: 0, numerator: 0, denominator: 0 });
   const [sign, setSign] = useState('?=?');
-  console.log(sign);
-  console.log(left);
-  console.log(right);
+  const [dice, setDice] = useState(4);
+  const [choosing, setChoosing] = useState(false);
+  const [turn, setTurn] = useState('left');
+  console.log(turn === 'left');
   return (
     <div>
       <SEO title="Fraction Game" />
       <GameboardStyles>
-        <LeftUserboard left={left} setLeft={setLeft} className="left" />
+        <LeftUserboard
+          left={left}
+          setLeft={setLeft}
+          dice={dice}
+          turn={turn}
+          choosing={choosing}
+          setChoosing={setChoosing}
+          setTurn={setTurn}
+        />
         <Inequality sign={sign} style={{ background: 'blue' }} />
-        <RightUserboard right={right} setRight={setRight} className="right" />
+        <RightUserboard
+          right={right}
+          setRight={setRight}
+          choosing={choosing}
+          dice={dice}
+          turn={turn}
+          setTurn={setTurn}
+          setChoosing={setChoosing}
+          className="right"
+        />
+        <DiceRoller
+          dice={dice}
+          choosing={choosing}
+          setChoosing={setChoosing}
+          setDice={setDice}
+        />
         <button
           type="button"
+          className="check button"
           onClick={() => {
             checkSign({ left, right, setSign, sign });
           }}
