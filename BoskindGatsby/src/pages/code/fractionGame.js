@@ -7,10 +7,13 @@ const GameboardStyles = styled.div`
   border-radius: 2em;
   display: grid;
 
-  grid-template-columns: minmax(200px, 1fr) auto minmax(200px, 1fr);
+  grid-template-columns: minmax(220px, 300px) auto minmax(220px, 300px);
   grid-gap: 2rem;
   .sign {
     align-self: center;
+    text-align: center;
+    font-size: 6rem;
+    min-width: max-content;
   }
   .fraction {
     display: grid;
@@ -33,7 +36,44 @@ const GameboardStyles = styled.div`
   input {
     width: 50px;
   }
+
+  button {
+    text-align: center;
+  }
+  @media (max-width: 600px) {
+    grid-gap: 1rem;
+    font-size: 1.5rem;
+    grid-template-columns: minmax(140px, 300px) auto minmax(140px, 300px);
+    div {
+      margin: 0.5rem;
+      padding: 0.5rem;
+    }
+    input {
+      width: 30px;
+    }
+  }
 `;
+
+function getGreater({ left, right }) {
+  const leftValue = left.numerator / left.denominator;
+  const rightValue = right.numerator / right.denominator;
+  if (leftValue > rightValue) {
+    return '>';
+  }
+  if (rightValue > leftValue) {
+    return '<';
+  }
+  if (rightValue === leftValue) {
+    return '==';
+  }
+
+  return 'error';
+}
+function checkSign({ right, left, sign, setSign }) {
+  const greater = getGreater({ right, left });
+
+  setSign(greater);
+}
 
 function LeftUserboard({ left, setLeft }) {
   return (
@@ -55,14 +95,16 @@ function LeftUserboard({ left, setLeft }) {
           onChange={(e) => setLeft({ ...left, denominator: e.target.value })}
         />
       </div>
-      <label htmlFor="leftJunk">Junk Pile</label>
-      <input
-        name="leftJunk"
-        type="number"
-        value={left.junk}
-        min="1"
-        onChange={(e) => setLeft({ ...left, junk: e.target.value })}
-      />
+      <div>
+        Junk Pile
+        <input
+          name="leftJunk"
+          type="number"
+          value={left.junk}
+          min="1"
+          onChange={(e) => setLeft({ ...left, junk: e.target.value })}
+        />
+      </div>
     </div>
   );
 }
@@ -87,19 +129,21 @@ function RightUserboard({ right, setRight }) {
           onChange={(e) => setRight({ ...right, denominator: e.target.value })}
         />
       </div>
-      <label htmlFor="rightJunk">Junk Pile</label>
-      <input
-        name="rightJunk"
-        type="number"
-        value={right.junk}
-        min="0"
-        onChange={(e) => setRight({ ...right, junk: e.target.value })}
-      />
+      <div>
+        Junk Pile
+        <input
+          name="rightJunk"
+          type="number"
+          value={right.junk}
+          min="0"
+          onChange={(e) => setRight({ ...right, junk: e.target.value })}
+        />
+      </div>
     </div>
   );
 }
 
-function Inequality({ sign }) {
+function Inequality({ sign, setSign, left, right }) {
   console.log(sign);
   return <h1 className="sign">{sign}</h1>;
 }
@@ -118,6 +162,14 @@ export default function fractionGame() {
         <LeftUserboard left={left} setLeft={setLeft} className="left" />
         <Inequality sign={sign} style={{ background: 'blue' }} />
         <RightUserboard right={right} setRight={setRight} className="right" />
+        <button
+          type="button"
+          onClick={() => {
+            checkSign({ left, right, setSign, sign });
+          }}
+        >
+          Click here to check winner
+        </button>
       </GameboardStyles>
     </div>
   );
