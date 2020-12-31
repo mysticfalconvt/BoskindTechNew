@@ -288,13 +288,17 @@ async function setWinner(
   setRightWinner,
   setLeftWinner,
   sign,
-  setComputerTurn
+  setComputerTurn,
+  playRecord,
+  setPlayRecord
 ) {
   if (computerTurn === 4) {
     const newSign = await checkSign({ right, left, setSign });
     if (newSign === '>') {
       setLeftWinner(true);
+      setPlayRecord({ ...playRecord, wins: playRecord.wins + 1 });
     } else if (newSign === '<') {
+      setPlayRecord({ ...playRecord, losses: playRecord.losses + 1 });
       setRightWinner(true);
     } else if (newSign === '==') {
       setRightWinner(true);
@@ -315,6 +319,19 @@ export default function FractionGame() {
   const [computerTurn, setComputerTurn] = useState(1);
   const [leftWinner, setLeftWinner] = useState(false);
   const [rightWinner, setRightWinner] = useState(false);
+  const [playRecord, setPlayRecord] = useState(
+    localStorage.getItem('playRecord')
+      ? JSON.parse(localStorage.getItem('playRecord'))
+      : { wins: 0, losses: 0 }
+  );
+  console.log('local');
+  console.log(localStorage.getItem(playRecord));
+  console.log(JSON.parse(localStorage.getItem('playRecord')));
+
+  useEffect(() =>
+    localStorage.setItem('playRecord', JSON.stringify(playRecord))
+  );
+
   useEffect(() => {
     setWinner(
       computerTurn,
@@ -324,7 +341,9 @@ export default function FractionGame() {
       setRightWinner,
       setLeftWinner,
       sign,
-      setComputerTurn
+      setComputerTurn,
+      playRecord,
+      setPlayRecord
     );
   }, [computerTurn]);
   function startNewGame(props) {
@@ -339,7 +358,7 @@ export default function FractionGame() {
     setRightWinner(false);
   }
 
-  function ResetButton({ leftWinner, rightWinner }) {
+  function ResetButton() {
     return (
       <button
         type="button"
@@ -418,6 +437,9 @@ export default function FractionGame() {
           setDice={setDice}
         />
       </GameboardStyles>
+      <div>
+        Wins: {playRecord.wins} Losses: {playRecord.losses}
+      </div>
     </div>
   );
 }
