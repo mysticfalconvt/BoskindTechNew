@@ -29,7 +29,8 @@ const GameboardStyles = styled.div`
     background: var(--black);
   }
   div {
-    background: var(--grey);
+    text-align: center;
+    background: var(--yellow);
     border-radius: 3rem;
     padding: 2rem;
     /* margin: 2rem; */
@@ -59,7 +60,10 @@ const GameboardStyles = styled.div`
     }
   }
   .activeTurn {
-    background: orange;
+    background: var(--grey);
+  }
+  .unused {
+    background: var(--grey);
   }
 `;
 
@@ -97,6 +101,7 @@ function LeftUserboard({
     <div className={turn === 'left' ? 'activeTurn' : 'NotActive'}>
       <div className="fraction">
         <div
+          className={!left.numerator && turn === 'left' ? 'unused' : ''}
           onClick={() => {
             if (choosing && left.numerator === 0) {
               setLeft({ ...left, numerator: dice });
@@ -110,6 +115,7 @@ function LeftUserboard({
 
         <div className="fractionBar" />
         <div
+          className={!left.denominator && turn === 'left' ? 'unused' : ''}
           onClick={() => {
             if (choosing && left.denominator === 0) {
               setLeft({ ...left, denominator: dice });
@@ -123,6 +129,7 @@ function LeftUserboard({
         <div>
           Junk Pile
           <div
+            className={!left.junk && turn === 'left' ? 'unused' : ''}
             onClick={() => {
               if (choosing && left.junk === 0) {
                 setLeft({ ...left, junk: dice });
@@ -152,6 +159,7 @@ function RightUserboard({
     <div className={turn === 'right' ? 'activeTurn' : 'NotActive'}>
       <div className="fraction">
         <div
+          className={!right.numerator && turn === 'right' ? 'unused' : ''}
           onClick={() => {
             if (choosing && right.numerator === 0) {
               setRight({ ...right, numerator: dice });
@@ -165,6 +173,7 @@ function RightUserboard({
 
         <div className="fractionBar" />
         <div
+          className={!right.denominator && turn === 'right' ? 'unused' : ''}
           onClick={() => {
             if (choosing && right.denominator === 0) {
               setRight({ ...right, denominator: dice });
@@ -178,6 +187,7 @@ function RightUserboard({
         <div>
           Junk Pile
           <div
+            className={!right.junk && turn === 'right' ? 'unused' : ''}
             onClick={() => {
               if (choosing && right.junk === 0) {
                 setRight({ ...right, junk: dice });

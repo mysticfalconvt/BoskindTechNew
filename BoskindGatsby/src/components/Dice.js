@@ -4,13 +4,12 @@ import styled from 'styled-components';
 const DiceContainer = styled.div`
   padding: 200px;
   background: unset;
-  .container {
-    /* all: unset; */
-    /* width: 200px;
-    height: 200px; */
-    /* perspective: 500px; */
-    /* margin: 100px; */
-  }
+
+  all: unset;
+  width: 200px;
+  height: auto;
+  perspective: 50px;
+  margin: 0px;
 
   .cube {
     /* position: auto; */
@@ -37,7 +36,7 @@ const DiceContainer = styled.div`
     background: var(--yellow);
     padding: 0;
     border-radius: 0%;
-    border: 2px solid black;
+    border: 3px solid black;
     position: absolute;
     opacity: 0.9;
     display: flex;
@@ -46,24 +45,24 @@ const DiceContainer = styled.div`
     font-family: Arial, sans-serif;
   }
   .front {
-    transform: translateX(-70px) translateZ(50px);
+    transform: translateX(0px) translateZ(50px);
   }
   .back {
-    transform: translateX(-70px) translateZ(-50px) rotateY(180deg);
+    transform: translateX(0px) translateZ(-50px) rotateY(180deg);
   }
   .left {
-    transform: translateX(-120px) rotateY(-90deg);
+    transform: translateX(-50px) rotateY(-90deg);
   }
 
   .right {
-    transform: translateX(-20px) rotateY(90deg);
+    transform: translateX(50px) rotateY(90deg);
   }
   .top {
-    transform: translateX(-70px) translateY(-50px) rotateX(90deg);
+    transform: translateX(0px) translateY(-50px) rotateX(90deg);
   }
 
   .bottom {
-    transform: translateX(-70px) translateY(50px) rotateX(-90deg);
+    transform: translateX(0px) translateY(50px) rotateX(-90deg);
   }
   @keyframes turn {
     from {
