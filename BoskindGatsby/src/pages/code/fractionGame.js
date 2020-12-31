@@ -8,6 +8,7 @@ const GameboardStyles = styled.div`
   background: var(--yellow);
   border-radius: 2em;
   display: grid;
+  min-height: max-content;
 
   grid-template-columns: minmax(220px, 300px) auto minmax(220px, 300px);
   grid-gap: 2rem;
@@ -363,7 +364,7 @@ export default function FractionGame() {
   }
 
   return (
-    <div>
+    <div style={{ height: '700px' }}>
       <SEO title="Fraction Game" />
       <h1 className="center">The fracton dice game</h1>
       <h4 className="center">
