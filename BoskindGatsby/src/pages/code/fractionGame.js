@@ -328,8 +328,9 @@ export default function FractionGame() {
   console.log(localStorage.getItem(playRecord));
   console.log(JSON.parse(localStorage.getItem('playRecord')));
 
-  useEffect(() =>
-    localStorage.setItem('playRecord', JSON.stringify(playRecord))
+  useEffect(
+    () => localStorage.setItem('playRecord', JSON.stringify(playRecord)),
+    [playRecord]
   );
 
   useEffect(() => {
