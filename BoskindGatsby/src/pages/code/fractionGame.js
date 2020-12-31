@@ -66,6 +66,15 @@ const GameboardStyles = styled.div`
   .unused {
     background: var(--grey);
   }
+  .winner {
+    background: green;
+    div {
+      background: lightgreen;
+    }
+  }
+  .hidden {
+    display: none;
+  }
 `;
 
 function getGreater({ left, right }) {
@@ -83,10 +92,11 @@ function getGreater({ left, right }) {
 
   return 'error';
 }
-function checkSign({ right, left, sign, setSign }) {
+async function checkSign({ right, left, setSign }) {
   const greater = getGreater({ right, left });
 
   setSign(greater);
+  return greater;
 }
 
 function LeftUserboard({
@@ -102,10 +112,15 @@ function LeftUserboard({
   setTurn,
   computerTurn,
   setComputerTurn,
+  leftWinner,
 }) {
   return (
-    <div className={turn === 'left' ? 'activeTurn' : 'NotActive'}>
-      <div className="fraction">
+    <div
+      className={
+        turn === 'left' && computerTurn < 4 ? 'activeTurn' : 'NotActive'
+      }
+    >
+      <div className={leftWinner ? 'winner fraction' : 'fraction'}>
         <div
           className={!left.numerator && turn === 'left' ? 'unused' : ''}
           onClick={() => {
@@ -196,10 +211,11 @@ function RightUserboard({
   setChoosing,
   turn,
   setTurn,
+  rightWinner,
 }) {
   return (
     <div className={turn === 'right' ? 'activeTurn' : 'NotActive'}>
-      <div className="fraction">
+      <div className={rightWinner ? 'winner fraction' : 'fraction'}>
         <div
           className={!right.numerator && turn === 'right' ? 'unused' : ''}
           onClick={() => {
@@ -263,7 +279,32 @@ function DiceRoller({ dice, setDice, choosing, setChoosing }) {
   );
 }
 
-export default function fractionGame() {
+async function setWinner(
+  computerTurn,
+  right,
+  left,
+  setSign,
+  setRightWinner,
+  setLeftWinner,
+  sign,
+  setComputerTurn
+) {
+  if (computerTurn === 4) {
+    const newSign = await checkSign({ right, left, setSign });
+    if (newSign === '>') {
+      setLeftWinner(true);
+    } else if (newSign === '<') {
+      setRightWinner(true);
+    } else if (newSign === '==') {
+      setRightWinner(true);
+      setLeftWinner(true);
+    }
+
+    setComputerTurn(5);
+  }
+}
+
+export default function FractionGame() {
   const [left, setLeft] = useState({ junk: 0, numerator: 0, denominator: 0 });
   const [right, setRight] = useState({ junk: 0, numerator: 0, denominator: 0 });
   const [sign, setSign] = useState('?=?');
@@ -271,11 +312,66 @@ export default function fractionGame() {
   const [choosing, setChoosing] = useState(false);
   const [turn, setTurn] = useState('left');
   const [computerTurn, setComputerTurn] = useState(1);
+  const [leftWinner, setLeftWinner] = useState(false);
+  const [rightWinner, setRightWinner] = useState(false);
+  useEffect(() => {
+    setWinner(
+      computerTurn,
+      right,
+      left,
+      setSign,
+      setRightWinner,
+      setLeftWinner,
+      sign,
+      setComputerTurn
+    );
+  }, [computerTurn]);
+  function startNewGame(props) {
+    setLeft({ junk: 0, numerator: 0, denominator: 0 });
+    setRight({ junk: 0, numerator: 0, denominator: 0 });
+    setSign('?=?');
+    setDice(4);
+    setChoosing(false);
+    setTurn('left');
+    setComputerTurn(1);
+    setLeftWinner(false);
+    setRightWinner(false);
+  }
+
+  function ResetButton({ leftWinner, rightWinner }) {
+    return (
+      <button
+        type="button"
+        className={leftWinner || rightWinner ? '' : 'hidden'}
+        onClick={() =>
+          startNewGame({
+            setLeft,
+            setRight,
+            setSign,
+            setDice,
+            setChoosing,
+            setTurn,
+            setComputerTurn,
+            setLeftWinner,
+            setRightWinner,
+          })
+        }
+      >
+        Start a new game
+      </button>
+    );
+  }
+
   return (
     <div>
       <SEO title="Fraction Game" />
       <h1 className="center">The fracton dice game</h1>
-      <h4 className="center">The game description goes here</h4>
+      <h4 className="center">
+        The goal of this game is to get the greatest fraction. <br />
+        Start out by rolling the dice and then you can put the value of that
+        roll into the Numerator, Denominator or your junk pile.
+        <br /> Complete 3 rolls and the player with the greatest value wins.
+      </h4>
       <GameboardStyles>
         <LeftUserboard
           left={left}
@@ -290,6 +386,7 @@ export default function fractionGame() {
           setTurn={setTurn}
           computerTurn={computerTurn}
           setComputerTurn={setComputerTurn}
+          leftWinner={leftWinner}
         />
         <Inequality sign={sign} style={{ background: 'blue' }} />
         <RightUserboard
@@ -301,14 +398,10 @@ export default function fractionGame() {
           setTurn={setTurn}
           setChoosing={setChoosing}
           className="right"
+          rightWinner={rightWinner}
         />
-        <DiceRoller
-          dice={dice}
-          choosing={choosing}
-          setChoosing={setChoosing}
-          setDice={setDice}
-        />
-        <button
+        <ResetButton leftWinner={leftWinner} rightWinner={rightWinner} />
+        {/* <button
           type="button"
           className="check button"
           onClick={() => {
@@ -316,7 +409,13 @@ export default function fractionGame() {
           }}
         >
           Click here to check winner
-        </button>
+        </button> */}
+        <DiceRoller
+          dice={dice}
+          choosing={choosing}
+          setChoosing={setChoosing}
+          setDice={setDice}
+        />
       </GameboardStyles>
     </div>
   );
