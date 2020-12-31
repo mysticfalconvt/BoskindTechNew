@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Dice from '../../components/Dice';
 import SEO from '../../components/SEO';
+import computerPlayer from '../../utils/computerPlayer';
 
 const GameboardStyles = styled.div`
   background: var(--yellow);
@@ -91,11 +92,16 @@ function checkSign({ right, left, sign, setSign }) {
 function LeftUserboard({
   left,
   setLeft,
+  right,
+  setRight,
   dice,
+  setDice,
   choosing,
   setChoosing,
   turn,
   setTurn,
+  computerTurn,
+  setComputerTurn,
 }) {
   return (
     <div className={turn === 'left' ? 'activeTurn' : 'NotActive'}>
@@ -107,6 +113,18 @@ function LeftUserboard({
               setLeft({ ...left, numerator: dice });
               setChoosing(!choosing);
               setTurn('right');
+              computerPlayer({
+                dice,
+                right,
+                left,
+                choosing,
+                setChoosing,
+                setRight,
+                computerTurn,
+                setComputerTurn,
+                setDice,
+                setTurn,
+              });
             }
           }}
         >
@@ -121,6 +139,18 @@ function LeftUserboard({
               setLeft({ ...left, denominator: dice });
               setChoosing(!choosing);
               setTurn('right');
+              computerPlayer({
+                dice,
+                right,
+                left,
+                choosing,
+                setChoosing,
+                setRight,
+                computerTurn,
+                setComputerTurn,
+                setDice,
+                setTurn,
+              });
             }
           }}
         >
@@ -135,6 +165,18 @@ function LeftUserboard({
                 setLeft({ ...left, junk: dice });
                 setChoosing(!choosing);
                 setTurn('right');
+                computerPlayer({
+                  dice,
+                  right,
+                  left,
+                  choosing,
+                  setChoosing,
+                  setRight,
+                  computerTurn,
+                  setComputerTurn,
+                  setDice,
+                  setTurn,
+                });
               }
             }}
           >
@@ -220,6 +262,7 @@ function DiceRoller({ dice, setDice, choosing, setChoosing }) {
     </div>
   );
 }
+
 export default function fractionGame() {
   const [left, setLeft] = useState({ junk: 0, numerator: 0, denominator: 0 });
   const [right, setRight] = useState({ junk: 0, numerator: 0, denominator: 0 });
@@ -227,19 +270,26 @@ export default function fractionGame() {
   const [dice, setDice] = useState(4);
   const [choosing, setChoosing] = useState(false);
   const [turn, setTurn] = useState('left');
-  console.log(turn === 'left');
+  const [computerTurn, setComputerTurn] = useState(1);
   return (
     <div>
       <SEO title="Fraction Game" />
+      <h1 className="center">The fracton dice game</h1>
+      <h4 className="center">The game description goes here</h4>
       <GameboardStyles>
         <LeftUserboard
           left={left}
           setLeft={setLeft}
+          right={right}
+          setRight={setRight}
           dice={dice}
+          setDice={setDice}
           turn={turn}
           choosing={choosing}
           setChoosing={setChoosing}
           setTurn={setTurn}
+          computerTurn={computerTurn}
+          setComputerTurn={setComputerTurn}
         />
         <Inequality sign={sign} style={{ background: 'blue' }} />
         <RightUserboard
