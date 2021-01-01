@@ -10,6 +10,12 @@ export default {
     twitter: '@RobBoskind',
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      trackingId: 'G-E6380GPMQS',
+      head: true,
+      anonymize: true,
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     `gatsby-plugin-transition-link`,
