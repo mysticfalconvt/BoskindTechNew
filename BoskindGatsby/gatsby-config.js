@@ -28,10 +28,10 @@ export default {
         name: `Boskind.Tech`,
         short_name: `Boskind`,
         start_url: `/`,
-        background_color: `#f7f0eb`,
-        theme_color: `#a2466c`,
+        background_color: `#FF4949`,
+        theme_color: `#ffc600`,
         display: `standalone`,
-        icon: `static/logo.svg`,
+        icon: `static/boskind.png`,
       },
     },
     {
