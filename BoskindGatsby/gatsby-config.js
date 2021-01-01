@@ -25,8 +25,8 @@ export default {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `GatsbyJS`,
-        short_name: `GatsbyJS`,
+        name: `Boskind.Tech`,
+        short_name: `Boskind`,
         start_url: `/`,
         background_color: `#f7f0eb`,
         theme_color: `#a2466c`,
