@@ -12,7 +12,7 @@ export default {
   plugins: [
     {
       resolve: `gatsby-plugin-google-analytics`,
-      trackingId: 'G-E6380GPMQS',
+      trackingId: 'UA-31032206-2',
       head: true,
       anonymize: true,
     },
