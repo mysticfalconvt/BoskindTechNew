@@ -31,7 +31,6 @@ const YodaStyles = styled.div`
 `;
 
 export default function Code({ data }) {
-  console.log(data.files);
   return (
     <div className="center">
       <Helmet>
@@ -43,7 +42,6 @@ export default function Code({ data }) {
           const rawName = singleFile.internalComponentName;
           const spacedName = rawName.replace(/([A-Z])/g, ' $1');
           const formatedName = spacedName.split(' ').slice(3).join(' ');
-          console.log(singleFile);
           return (
             <AniLink key={singleFile.path} fade to={singleFile.path}>
               <p>{formatedName}</p>

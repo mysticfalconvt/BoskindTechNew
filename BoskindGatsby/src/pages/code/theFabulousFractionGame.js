@@ -320,10 +320,10 @@ export default function FractionGame() {
   const [leftWinner, setLeftWinner] = useState(false);
   const [rightWinner, setRightWinner] = useState(false);
   const [playRecord, setPlayRecord] = useState({ wins: 0, losses: 0 });
-  useEffect(
-    () => setPlayRecord(JSON.parse(localStorage.getItem('playRecord'))),
-    []
-  );
+  useEffect(() => {
+    localStorage.getItem('playRecord') &&
+      setPlayRecord(JSON.parse(localStorage.getItem('playRecord')));
+  }, []);
   useEffect(
     () => localStorage.setItem('playRecord', JSON.stringify(playRecord)),
     [playRecord]

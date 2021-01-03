@@ -13,12 +13,10 @@ async function rollDice(props) {
 export default async function computerPlayer(props) {
   //   turn 1
   if (props.computerTurn === 0) {
-    console.log('turn 0');
   } else if (props.computerTurn === 1) {
     const newDiceRoll = await rollDice(props);
     if (newDiceRoll === 3 || newDiceRoll === 4) {
       props.setRight({ ...props.right, junk: newDiceRoll });
-      console.log('waited');
     } else if (newDiceRoll < 3) {
       props.setRight({ ...props.right, denominator: newDiceRoll });
     } else {
@@ -29,7 +27,6 @@ export default async function computerPlayer(props) {
     props.setComputerTurn(2);
   } else if (props.computerTurn === 2) {
     const newDiceRoll = await rollDice(props);
-    console.log('turn 2');
     if (props.right.junk) {
       if (newDiceRoll >= 4) {
         props.setRight({ ...props.right, numerator: newDiceRoll });
