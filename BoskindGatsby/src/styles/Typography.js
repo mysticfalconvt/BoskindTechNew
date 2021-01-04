@@ -39,6 +39,7 @@ const Typography = createGlobalStyle`
   .tilt {
     transform: rotate(-2deg);
   }
+  
 `;
 
 export default Typography;
