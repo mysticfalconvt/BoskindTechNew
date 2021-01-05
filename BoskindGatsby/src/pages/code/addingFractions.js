@@ -73,6 +73,20 @@ const SingleFractionStyle = styled.div`
   }
 `;
 
+const AnswerStyles = styled.div`
+  display: grid;
+  grid-template-columns: 5rem auto 5rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  .correct {
+    background: green;
+  }
+  .incorrect {
+    background: var(--red);
+  }
+`;
+
 function checkFraction(props) {
   const fractionOne =
     props.fractionValues.numeratorOne / props.fractionValues.denominatorOne;
@@ -85,8 +99,20 @@ function checkFraction(props) {
   console.log(answer === guess);
   if (answer === guess) {
     props.setGameState('win');
+    const lastTurn = { ...props.fractionValues, correct: 'correct' };
+    if (props.previousTurns) {
+      props.setPreviousTurns([lastTurn, ...props.previousTurns]);
+    } else {
+      props.setPreviousTurns([lastTurn]);
+    }
   } else {
     props.setGameState('lose');
+    const lastTurn = { ...props.fractionValues, correct: 'incorrect' };
+    if (props.previousTurns) {
+      props.setPreviousTurns([lastTurn, ...props.previousTurns]);
+    } else {
+      props.setPreviousTurns([lastTurn]);
+    }
   }
 }
 
@@ -109,6 +135,8 @@ function GameButton({
   answerDenominator,
   setGameState,
   gameState,
+  previousTurns,
+  setPreviousTurns,
 }) {
   if (gameState === 'answering') {
     return (
@@ -121,6 +149,8 @@ function GameButton({
             answerNumerator,
             answerDenominator,
             setGameState,
+            previousTurns,
+            setPreviousTurns,
           })
         }
       >
@@ -142,24 +172,41 @@ function GameButton({
   );
 }
 
+function AnswerFractions(props) {
+  const { fractionValues } = props;
+  return (
+    <AnswerStyles className={fractionValues.correct}>
+      <SingleFractionStyle className={fractionValues.correct}>
+        <h3>{fractionValues.numeratorOne}</h3>
+        <div className="fractionBar" />
+        <h3>{fractionValues.denominatorOne}</h3>
+      </SingleFractionStyle>
+      <div className="plus">+</div>
+      <SingleFractionStyle className={fractionValues.correct}>
+        <h3>{fractionValues.numeratorTwo}</h3>
+        <div className="fractionBar" />
+        <h3>{fractionValues.denominatorTwo}</h3>
+      </SingleFractionStyle>
+    </AnswerStyles>
+  );
+}
+
 function newGame(props) {
   generateFractions(props.setFractionValues, props.maxFractionSize);
   props.setGameState('answering');
 }
 
-export default function addingFractions() {
+export default function AddingFractions() {
   const [fractionValues, setFractionValues] = useState({});
   const [answerNumerator, setAnswerNumerator] = useState(Number);
   const [answerDenominator, setAnswerDenominator] = useState(Number);
   const [gameState, setGameState] = useState('answering');
   const [maxFractionSize, setMaxFractionSize] = useState(10);
+  const [previousTurns, setPreviousTurns] = useState();
 
   useEffect(() => {
     if (gameState === 'newGame') {
       newGame({
-        fractionValues,
-        answerNumerator,
-        answerDenominator,
         setGameState,
         setFractionValues,
         maxFractionSize,
@@ -210,8 +257,19 @@ export default function addingFractions() {
           answerDenominator={answerDenominator}
           gameState={gameState}
           setGameState={setGameState}
+          previousTurns={previousTurns}
+          setPreviousTurns={setPreviousTurns}
         />
       </GameBoardStyles>
+      <div>
+        {previousTurns &&
+          previousTurns.map((turn) => {
+            console.log(turn);
+            return (
+              <AnswerFractions fractionValues={turn} className={turn.correct} />
+            );
+          })}
+      </div>
     </GameStyle>
   );
 }
