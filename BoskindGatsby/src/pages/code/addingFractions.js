@@ -74,15 +74,25 @@ const SingleFractionStyle = styled.div`
 `;
 
 const AnswerStyles = styled.div`
-  display: grid;
-  grid-template-columns: 5rem auto 5rem;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1px;
+  .singleAnswer {
+    border-radius: 3rem;
+    display: grid;
+    grid-template-columns: 5rem auto 5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 5px;
+    font-size: 2rem;
+  }
   .correct {
     background: green;
+    border-radius: 3rem;
   }
   .incorrect {
+    border-radius: 3rem;
     background: var(--red);
   }
 `;
@@ -97,7 +107,7 @@ function checkFraction(props) {
   console.log(answer);
   console.log(guess);
   console.log(answer === guess);
-  if (answer === guess) {
+  if (Math.abs(answer - guess) < 0.000001) {
     props.setGameState('win');
     const lastTurn = { ...props.fractionValues, correct: 'correct' };
     if (props.previousTurns) {
@@ -175,7 +185,7 @@ function GameButton({
 function AnswerFractions(props) {
   const { fractionValues } = props;
   return (
-    <AnswerStyles className={fractionValues.correct}>
+    <div className={`singleAnswer ${fractionValues.correct}`}>
       <SingleFractionStyle className={fractionValues.correct}>
         <h3>{fractionValues.numeratorOne}</h3>
         <div className="fractionBar" />
@@ -187,13 +197,15 @@ function AnswerFractions(props) {
         <div className="fractionBar" />
         <h3>{fractionValues.denominatorTwo}</h3>
       </SingleFractionStyle>
-    </AnswerStyles>
+    </div>
   );
 }
 
 function newGame(props) {
   generateFractions(props.setFractionValues, props.maxFractionSize);
   props.setGameState('answering');
+  props.setAnswerNumerator(0);
+  props.setAnswerDenominator(0);
 }
 
 export default function AddingFractions() {
@@ -209,6 +221,8 @@ export default function AddingFractions() {
       newGame({
         setGameState,
         setFractionValues,
+        setAnswerNumerator,
+        setAnswerDenominator,
         maxFractionSize,
       });
     }
@@ -261,15 +275,25 @@ export default function AddingFractions() {
           setPreviousTurns={setPreviousTurns}
         />
       </GameBoardStyles>
-      <div>
+      {/* <p>
+        correct:
+        {previousTurns
+          ? previousTurns.filter((turn) => turn.correct === 'correct').length()
+          : '0'}
+      </p> */}
+      <AnswerStyles>
         {previousTurns &&
           previousTurns.map((turn) => {
             console.log(turn);
             return (
-              <AnswerFractions fractionValues={turn} className={turn.correct} />
+              <AnswerFractions
+                fractionValues={turn}
+                className={turn.correct}
+                key={`turn ${turn.numeratorOne} ${Math.random()} `}
+              />
             );
           })}
-      </div>
+      </AnswerStyles>
     </GameStyle>
   );
 }
