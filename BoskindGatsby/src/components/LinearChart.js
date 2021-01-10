@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Chart from 'chart.js';
 
 function chartData({ slope, intercept, min, max }) {
@@ -9,12 +9,10 @@ function chartData({ slope, intercept, min, max }) {
     valuesToChart.push({ x: i, y: yValue });
     labels.push(i);
   }
-  console.log(valuesToChart);
-  console.log(labels);
   return { valuesToChart, labels };
 }
 
-export default function LinearChart({ chartInfo }) {
+export default function LinearChart({ chartInfo, points }) {
   useEffect(() => {
     const dataToChart = chartData({
       slope: chartInfo.slope,
@@ -32,9 +30,24 @@ export default function LinearChart({ chartInfo }) {
         labels: dataToChart.labels,
         datasets: [
           {
+            label: `(${points.x1}, ${points.y1}) & (${points.x2}, ${points.y2})`,
+            pointBorderColor: 'rgba(255,0, 255, 1)',
+            BorderColor: 'rgba(0,200, 200, 1)',
+            BackgroundColor: 'rgba(0,200, 200, 1)',
+            borderWidth: '2',
+            pointBackgroundColor: 'rgba(0, 0, 0,1)',
+
+            type: 'scatter',
+            data: [
+              { x: points.x1, y: points.y1 },
+              { x: points.x2, y: points.y2 },
+            ],
+          },
+          {
             label: `y=${chartInfo.slope}x+${chartInfo.intercept}`,
+            pointBorderColor: 'rgba(0,0,0,0)',
             backgroundColor: 'rgba(255, 99, 132,0)',
-            borderColor: 'rgb(255, 99, 132)',
+            borderColor: `rgba(255, 99, 132,${chartInfo.visible})`,
             data: dataToChart.valuesToChart,
           },
         ],
@@ -42,13 +55,56 @@ export default function LinearChart({ chartInfo }) {
 
       // Configuration options go here
       options: {
-        scales: {
-          y: {
-            suggestedMin: 0,
-            suggestedMax: 20,
-            position: 'center',
-            beginAtZero: true,
+        responsive: true,
+
+        legend: {
+          display: false,
+          labels: {
+            color: 'rgb(255, 99, 132)',
           },
+        },
+
+        scales: {
+          xAxes: [
+            {
+              position: 'bottom',
+            },
+            {
+              position: 'top',
+            },
+          ],
+          yAxes: [
+            {
+              position: 'left',
+              gridLines: {
+                zeroLineColor: 'rgb(0,0,0)',
+                zeroLineWidth: 2,
+                drawOnChartArea: true,
+              },
+              ticks: {
+                crossAlign: true,
+                beginAtZero: true,
+                precision: 1,
+                max: 10,
+                min: -10,
+                stepSize: 1,
+              },
+            },
+            {
+              position: 'right',
+              gridLines: {
+                zeroLineColor: 'rgb(0,0,0)',
+                zeroLineWidth: 1,
+              },
+              ticks: {
+                beginAtZero: true,
+                precision: 1,
+                max: 10,
+                min: -10,
+                stepSize: 2,
+              },
+            },
+          ],
         },
       },
     });
