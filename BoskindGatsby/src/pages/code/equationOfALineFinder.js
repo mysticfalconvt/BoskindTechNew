@@ -10,6 +10,10 @@ const GraphAppStyles = styled.div`
   display: grid;
   grid-template-columns: minmax(min-content, 400px) auto;
 
+  h1 {
+    grid-column: span 2;
+  }
+
   @media (max-width: 800px) {
     grid-template-columns: auto;
   }
@@ -30,7 +34,7 @@ export default function GraphingPlayground() {
     max: range,
     visible: 0,
   });
-  const [points, setPoints] = useState(getRandomPoints(5));
+  const [points, setPoints] = useState(getRandomPoints(range));
 
   return (
     <>

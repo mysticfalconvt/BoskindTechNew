@@ -31,6 +31,7 @@ export default function LinearChart({ chartInfo, points }) {
         datasets: [
           {
             label: `(${points.x1}, ${points.y1}) & (${points.x2}, ${points.y2})`,
+            yAxisID: 'left-y-axis',
             pointBorderColor: 'rgba(255,0, 255, 1)',
             BorderColor: 'rgba(0,200, 200, 1)',
             BackgroundColor: 'rgba(0,200, 200, 1)',
@@ -45,10 +46,22 @@ export default function LinearChart({ chartInfo, points }) {
           },
           {
             label: `y=${chartInfo.slope}x+${chartInfo.intercept}`,
+            yAxisID: 'left-y-axis',
             pointBorderColor: 'rgba(0,0,0,0)',
             backgroundColor: 'rgba(255, 99, 132,0)',
             borderColor: `rgba(255, 99, 132,${chartInfo.visible})`,
             data: dataToChart.valuesToChart,
+          },
+          {
+            label: `Line Through (${points.x1}, ${points.y1}) & (${points.x2}, ${points.y2})`,
+            yAxisID: 'left-y-axis',
+            pointBorderColor: 'rgba(0,0,0,0)',
+            backgroundColor: 'rgba(255, 99, 132,0)',
+            borderColor: `rgba(0, 0, 0,${chartInfo.visible})`,
+            data: [
+              { x: points.x3, y: points.y3 },
+              { x: points.x4, y: points.y4 },
+            ],
           },
         ],
       },
@@ -68,6 +81,8 @@ export default function LinearChart({ chartInfo, points }) {
           xAxes: [
             {
               position: 'bottom',
+              zeroLineColor: 'rgb(0,0,0)',
+              zeroLineWidth: 2,
             },
             {
               position: 'top',
@@ -76,6 +91,8 @@ export default function LinearChart({ chartInfo, points }) {
           yAxes: [
             {
               position: 'left',
+              id: 'left-y-axis',
+              // type: 'linear',
               gridLines: {
                 zeroLineColor: 'rgb(0,0,0)',
                 zeroLineWidth: 2,
@@ -84,23 +101,24 @@ export default function LinearChart({ chartInfo, points }) {
               ticks: {
                 crossAlign: true,
                 beginAtZero: true,
-                precision: 1,
-                max: 10,
-                min: -10,
-                stepSize: 1,
+                max: 20,
+                min: -20,
+                stepSize: 2,
               },
             },
             {
               position: 'right',
+              // type: 'linear',
               gridLines: {
                 zeroLineColor: 'rgb(0,0,0)',
-                zeroLineWidth: 1,
+                zeroLineWidth: 2,
+                drawOnChartArea: true,
               },
               ticks: {
+                crossAlign: true,
                 beginAtZero: true,
-                precision: 1,
-                max: 10,
-                min: -10,
+                max: 20,
+                min: -20,
                 stepSize: 2,
               },
             },

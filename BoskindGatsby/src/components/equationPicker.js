@@ -89,7 +89,6 @@ function EquationPicker({ points, chartInfo, setChartInfo, setPoints }) {
           value={chartInfo.intercept}
           onChange={(e) => {
             setChartInfo({ ...chartInfo, intercept: Number(e.target.value) });
-            console.log(chartInfo);
           }}
         />
       </div>
