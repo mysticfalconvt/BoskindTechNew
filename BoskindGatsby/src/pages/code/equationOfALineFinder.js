@@ -12,10 +12,11 @@ const GraphAppStyles = styled.div`
 
   h1 {
     /* grid-column: span 2; */
+    padding: 10px;
   }
   .titles {
     display: flex;
-    flex-wrap: wrap;
+
     grid-column: span 3;
     justify-content: center;
   }
@@ -24,6 +25,10 @@ const GraphAppStyles = styled.div`
   }
   @media (max-width: 800px) {
     grid-template-columns: auto;
+    .titles {
+      flex-wrap: wrap;
+    }
+
     .chart {
       grid-column: span 1;
     }
