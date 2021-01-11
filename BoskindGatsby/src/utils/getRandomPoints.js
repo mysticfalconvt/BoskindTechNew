@@ -14,5 +14,5 @@ export function getRandomPoints(range = 5) {
   const y3 = Math.round((slope * x3 + intercept) * 100) / 100;
   const y4 = Math.round((slope * x4 + intercept) * 100) / 100;
 
-  return { x1, y1, x2, y2, x3, y3, x4, y4 };
+  return { x1, y1, x2, y2, x3, y3, x4, y4, slope, intercept };
 }

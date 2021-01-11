@@ -15,6 +15,11 @@ const EquationPickerStyles = styled.div`
     justify-content: center;
     input {
       width: 7rem;
+      @media (max-width: 600px) {
+        font-size: 2rem;
+
+        width: 4rem;
+      }
     }
   }
   button {
@@ -92,30 +97,6 @@ function EquationPicker({ points, chartInfo, setChartInfo, setPoints }) {
           }}
         />
       </div>
-      <button
-        name="button"
-        type="button"
-        onClick={() =>
-          setChartInfo({
-            ...chartInfo,
-            visible: chartInfo.visible === 1 ? 0 : 1,
-          })
-        }
-      >
-        {' '}
-        Check my line{' '}
-      </button>
-      <button
-        name="reset"
-        type="button"
-        onClick={() => {
-          setChartInfo({ ...chartInfo, visible: 0 });
-          setPoints(getRandomPoints(5));
-        }}
-      >
-        {' '}
-        Get New Points{' '}
-      </button>
     </EquationPickerStyles>
   );
 }
