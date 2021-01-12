@@ -27,7 +27,7 @@ export default function LinearChart({ chartInfo, points }) {
 
       // The data for our dataset
       data: {
-        labels: dataToChart.labels,
+        // labels: dataToChart.labels,
         datasets: [
           {
             label: `(${points.x1}, ${points.y1}) & (${points.x2}, ${points.y2})`,
@@ -68,7 +68,12 @@ export default function LinearChart({ chartInfo, points }) {
 
       // Configuration options go here
       options: {
+        animation: {
+          easing: 'easeOutBounce',
+          duration: chartInfo.animation,
+        },
         responsive: true,
+        maintainAspectRatio: true,
 
         legend: {
           display: false,
@@ -82,7 +87,8 @@ export default function LinearChart({ chartInfo, points }) {
             {
               position: 'bottom',
               zeroLineColor: 'rgb(0,0,0)',
-              zeroLineWidth: 2,
+              zeroLineWidth: 5,
+              type: 'linear',
             },
             {
               position: 'top',
@@ -127,7 +133,7 @@ export default function LinearChart({ chartInfo, points }) {
       },
     });
     return () => chart.destroy();
-  });
+  }, [chartInfo]);
   return (
     <div className="chartjs-wrapper">
       <canvas id="myChart" className="chartjs" />

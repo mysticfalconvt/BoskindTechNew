@@ -55,9 +55,39 @@ export default function GraphingPlayground() {
     min: 0 - range,
     max: range,
     visible: 0,
+    animation: 3000,
   });
   const [points, setPoints] = useState(getRandomPoints(range));
-  const [gameState, setGameState] = useState('guessing');
+  const [gameState, setGameState] = useState('starting');
+
+  const [playRecordLineEquation, setPlayRecordLineEquation] = useState({
+    correct: 0,
+    incorrect: 0,
+  });
+  useEffect(() => {
+    localStorage.getItem('playRecordLineEquation') &&
+      setPlayRecordLineEquation(
+        JSON.parse(localStorage.getItem('playRecordLineEquation'))
+      );
+  }, []);
+  useEffect(
+    () =>
+      localStorage.setItem(
+        'playRecordLineEquation',
+        JSON.stringify(playRecordLineEquation)
+      ),
+    [playRecordLineEquation]
+  );
+
+  useEffect(() => {
+    if (gameState === 'check') {
+      setPlayRecordLineEquation({
+        ...playRecordLineEquation,
+        correct: playRecordLineEquation.correct + 1,
+      });
+      setGameState('guessing');
+    }
+  }, [gameState]);
   return (
     <>
       <SEO title="Equation of a line game" />
@@ -66,12 +96,14 @@ export default function GraphingPlayground() {
           <button
             name="button"
             type="button"
-            onClick={() =>
+            onClick={() => {
+              setGameState('check');
               setChartInfo({
                 ...chartInfo,
                 visible: chartInfo.visible === 1 ? 0 : 1,
-              })
-            }
+                animation: 3000,
+              });
+            }}
           >
             {' '}
             Check my line{' '}
@@ -83,7 +115,8 @@ export default function GraphingPlayground() {
             name="reset"
             type="button"
             onClick={() => {
-              setChartInfo({ ...chartInfo, visible: 0 });
+              setChartInfo({ ...chartInfo, visible: 0, animation: 3000 });
+              setGameState('newGame');
               setPoints(getRandomPoints(5));
             }}
           >
@@ -105,6 +138,10 @@ export default function GraphingPlayground() {
           />
         </div>
       </GraphAppStyles>
+      <div>
+        Wins: {playRecordLineEquation.correct} Losses:{' '}
+        {playRecordLineEquation.incorrect}
+      </div>
     </>
   );
 }

@@ -37,6 +37,7 @@ function EquationPicker({ points, chartInfo, setChartInfo, setPoints }) {
       setChartInfo({
         ...chartInfo,
         slope: slopeFraction.numerator / slopeFraction.denominator,
+        animation: 0,
       }),
     [slopeFraction]
   );
@@ -93,7 +94,11 @@ function EquationPicker({ points, chartInfo, setChartInfo, setPoints }) {
           name="intercept"
           value={chartInfo.intercept}
           onChange={(e) => {
-            setChartInfo({ ...chartInfo, intercept: Number(e.target.value) });
+            setChartInfo({
+              ...chartInfo,
+              intercept: Number(e.target.value),
+              animation: 0,
+            });
           }}
         />
       </div>
