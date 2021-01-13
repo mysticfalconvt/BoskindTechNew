@@ -5,7 +5,9 @@ import { getRandomPoints } from '../utils/getRandomPoints';
 
 const EquationPickerStyles = styled.div`
   padding: 2rem;
-
+  div {
+    background: var(--white);
+  }
   span.nowrap {
     white-space: nowrap;
   }
@@ -27,7 +29,13 @@ const EquationPickerStyles = styled.div`
   }
 `;
 
-function EquationPicker({ points, chartInfo, setChartInfo, setPoints }) {
+function EquationPicker({
+  points,
+  chartInfo,
+  setChartInfo,
+  gameState,
+  setGameState,
+}) {
   const [slopeFraction, setSlopeFraction] = useState({
     numerator: 1,
     denominator: 1,
@@ -41,6 +49,15 @@ function EquationPicker({ points, chartInfo, setChartInfo, setPoints }) {
       }),
     [slopeFraction]
   );
+  useEffect(() => {
+    if (gameState === 'restart') {
+      setChartInfo({ ...chartInfo, intercept: 1 });
+      setSlopeFraction({ numerator: 1, denominator: 1 });
+      setGameState('guessing');
+    }
+  }, [gameState]);
+
+  const editableValues = gameState !== 'guessing';
   return (
     <EquationPickerStyles>
       <h3 className="center">
@@ -68,6 +85,7 @@ function EquationPicker({ points, chartInfo, setChartInfo, setPoints }) {
         <SingleFractionStyle>
           <input
             type="number"
+            readOnly={editableValues}
             name="slopeNumerator"
             value={slopeFraction.numerator}
             onChange={(e) =>
@@ -77,6 +95,7 @@ function EquationPicker({ points, chartInfo, setChartInfo, setPoints }) {
           <div className="fractionBar" />
           <input
             type="number"
+            readOnly={editableValues}
             name="slopeDenominator"
             value={slopeFraction.denominator}
             onChange={(e) => {
@@ -91,6 +110,7 @@ function EquationPicker({ points, chartInfo, setChartInfo, setPoints }) {
         <input
           className="intercept"
           type="number"
+          readOnly={editableValues}
           name="intercept"
           value={chartInfo.intercept}
           onChange={(e) => {

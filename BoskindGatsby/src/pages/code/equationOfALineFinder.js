@@ -47,6 +47,62 @@ const GraphAppStyles = styled.div`
   }
 `;
 
+function NewGameButton({
+  setGameState,
+  setPoints,
+  setChartInfo,
+  chartInfo,
+  gameState,
+}) {
+  console.log('game reset');
+  if (gameState === 'logged') {
+    return (
+      <button
+        name="reset"
+        type="button"
+        onClick={() => {
+          setChartInfo({ ...chartInfo, visible: 0, animation: 2000 });
+          setGameState('restart');
+          setPoints(getRandomPoints(5));
+        }}
+      >
+        {' '}
+        Get New Points{' '}
+      </button>
+    );
+  }
+  return <div />;
+}
+
+function CheckMyLineButton({
+  setGameState,
+  setChartInfo,
+  chartInfo,
+  gameState,
+}) {
+  console.log('button');
+  if (gameState === 'guessing') {
+    return (
+      <button
+        name="button"
+        type="button"
+        onClick={() => {
+          setGameState('check');
+          setChartInfo({
+            ...chartInfo,
+            visible: chartInfo.visible === 1 ? 0 : 1,
+            animation: 3000,
+          });
+        }}
+      >
+        {' '}
+        Check my line{' '}
+      </button>
+    );
+  }
+  return <div />;
+}
+
 export default function GraphingPlayground() {
   const range = 5;
   const [chartInfo, setChartInfo] = useState({
@@ -58,7 +114,7 @@ export default function GraphingPlayground() {
     animation: 3000,
   });
   const [points, setPoints] = useState(getRandomPoints(range));
-  const [gameState, setGameState] = useState('starting');
+  const [gameState, setGameState] = useState('guessing');
 
   const [playRecordLineEquation, setPlayRecordLineEquation] = useState({
     correct: 0,
@@ -81,11 +137,21 @@ export default function GraphingPlayground() {
 
   useEffect(() => {
     if (gameState === 'check') {
-      setPlayRecordLineEquation({
-        ...playRecordLineEquation,
-        correct: playRecordLineEquation.correct + 1,
-      });
-      setGameState('guessing');
+      if (
+        chartInfo.slope - points.slope < 0.001 &&
+        chartInfo.intercept - points.intercept < 0.001
+      ) {
+        setPlayRecordLineEquation({
+          ...playRecordLineEquation,
+          correct: (playRecordLineEquation.correct || 0) + 1,
+        });
+      } else {
+        setPlayRecordLineEquation({
+          ...playRecordLineEquation,
+          incorrect: (playRecordLineEquation.incorrect || 0) + 1,
+        });
+      }
+      setGameState('logged');
     }
   }, [gameState]);
   return (
@@ -93,42 +159,30 @@ export default function GraphingPlayground() {
       <SEO title="Equation of a line game" />
       <GraphAppStyles>
         <div className="titles">
-          <button
-            name="button"
-            type="button"
-            onClick={() => {
-              setGameState('check');
-              setChartInfo({
-                ...chartInfo,
-                visible: chartInfo.visible === 1 ? 0 : 1,
-                animation: 3000,
-              });
-            }}
-          >
-            {' '}
-            Check my line{' '}
-          </button>
+          <CheckMyLineButton
+            chartInfo={chartInfo}
+            setChartInfo={setChartInfo}
+            setGameState={setGameState}
+            gameState={gameState}
+          />
           <h1 className="center">
             Find the equation of the line from 2 points
           </h1>
-          <button
-            name="reset"
-            type="button"
-            onClick={() => {
-              setChartInfo({ ...chartInfo, visible: 0, animation: 3000 });
-              setGameState('newGame');
-              setPoints(getRandomPoints(5));
-            }}
-          >
-            {' '}
-            Get New Points{' '}
-          </button>
+          <NewGameButton
+            setGameState={setGameState}
+            setPoints={setPoints}
+            setChartInfo={setChartInfo}
+            chartInfo={chartInfo}
+            gameState={gameState}
+          />
         </div>
         <EquationPicker
           chartInfo={chartInfo}
           points={points}
           setChartInfo={setChartInfo}
           setPoints={setPoints}
+          gameState={gameState}
+          setGameState={setGameState}
         />
         <div className="chart">
           <LinearChart
