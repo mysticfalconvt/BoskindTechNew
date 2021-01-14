@@ -6,10 +6,61 @@ import SEO from '../../components/SEO';
 import SlopeCalculator from '../../components/SlopeCalculator';
 import { getRandomPoints } from '../../utils/getRandomPoints';
 
+const AppStyleForWinner = styled.div`
+  padding: 1.5rem;
+  .win {
+    @keyframes shine {
+      from {
+        border-radius: 1rem;
+        background-position: 200%;
+      }
+      to {
+        border-radius: 1rem;
+        background-position: -200%;
+      }
+    }
+
+    --shine: rgba(0, 255, 0, 0.2);
+    --background: rgba(0, 180, 0, 0.1);
+    background-image: linear-gradient(
+      90deg,
+      var(--background) 0px,
+      var(--shine) 80px,
+      var(--background) 160px
+    );
+    background-size: 500px;
+    animation: shine 3s infinite alternate ease-in-out;
+  }
+
+  .lose {
+    @keyframes shine {
+      from {
+        border-radius: 1rem;
+        background-position: 200%;
+      }
+      to {
+        border-radius: 1rem;
+        background-position: -200%;
+      }
+    }
+
+    --shine: rgba(255, 0, 0, 0.2);
+    --background: rgba(180, 0, 0, 0.1);
+    background-image: linear-gradient(
+      90deg,
+      var(--background) 0px,
+      var(--shine) 80px,
+      var(--background) 160px
+    );
+    background-size: 500px;
+    animation: shine 3s infinite alternate ease-in-out;
+  }
+`;
+
 const GraphAppStyles = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-
+  padding: 1rem;
   h1 {
     /* grid-column: span 2; */
     padding: 10px;
@@ -53,6 +104,7 @@ function NewGameButton({
   setChartInfo,
   chartInfo,
   gameState,
+  setWinnerClass,
 }) {
   console.log('game reset');
   if (gameState === 'logged') {
@@ -64,6 +116,7 @@ function NewGameButton({
           setChartInfo({ ...chartInfo, visible: 0, animation: 2000 });
           setGameState('restart');
           setPoints(getRandomPoints(5));
+          setWinnerClass('');
         }}
       >
         {' '}
@@ -115,6 +168,7 @@ export default function GraphingPlayground() {
   });
   const [points, setPoints] = useState(getRandomPoints(range));
   const [gameState, setGameState] = useState('guessing');
+  const [winnerClass, setWinnerClass] = useState('');
 
   const [playRecordLineEquation, setPlayRecordLineEquation] = useState({
     correct: 0,
@@ -145,11 +199,13 @@ export default function GraphingPlayground() {
           ...playRecordLineEquation,
           correct: (playRecordLineEquation.correct || 0) + 1,
         });
+        setWinnerClass('win');
       } else {
         setPlayRecordLineEquation({
           ...playRecordLineEquation,
           incorrect: (playRecordLineEquation.incorrect || 0) + 1,
         });
+        setWinnerClass('lose');
       }
       setGameState('logged');
     }
@@ -157,45 +213,50 @@ export default function GraphingPlayground() {
   return (
     <>
       <SEO title="Equation of a line game" />
-      <GraphAppStyles>
-        <div className="titles">
-          <CheckMyLineButton
-            chartInfo={chartInfo}
-            setChartInfo={setChartInfo}
-            setGameState={setGameState}
-            gameState={gameState}
-          />
-          <h1 className="center">
-            Find the equation of the line from 2 points
-          </h1>
-          <NewGameButton
-            setGameState={setGameState}
-            setPoints={setPoints}
-            setChartInfo={setChartInfo}
-            chartInfo={chartInfo}
-            gameState={gameState}
-          />
+      <AppStyleForWinner>
+        <div className={winnerClass}>
+          <GraphAppStyles>
+            <div className="titles">
+              <CheckMyLineButton
+                chartInfo={chartInfo}
+                setChartInfo={setChartInfo}
+                setGameState={setGameState}
+                gameState={gameState}
+              />
+              <h1 className="center">
+                Find the equation of the line from 2 points
+              </h1>
+              <NewGameButton
+                setGameState={setGameState}
+                setPoints={setPoints}
+                setChartInfo={setChartInfo}
+                chartInfo={chartInfo}
+                gameState={gameState}
+                setWinnerClass={setWinnerClass}
+              />
+            </div>
+            <EquationPicker
+              chartInfo={chartInfo}
+              points={points}
+              setChartInfo={setChartInfo}
+              setPoints={setPoints}
+              gameState={gameState}
+              setGameState={setGameState}
+            />
+            <div className="chart">
+              <LinearChart
+                className="chart"
+                chartInfo={chartInfo}
+                points={points}
+              />
+            </div>
+          </GraphAppStyles>
+          <div>
+            Wins: {playRecordLineEquation.correct} Losses:{' '}
+            {playRecordLineEquation.incorrect}
+          </div>
         </div>
-        <EquationPicker
-          chartInfo={chartInfo}
-          points={points}
-          setChartInfo={setChartInfo}
-          setPoints={setPoints}
-          gameState={gameState}
-          setGameState={setGameState}
-        />
-        <div className="chart">
-          <LinearChart
-            className="chart"
-            chartInfo={chartInfo}
-            points={points}
-          />
-        </div>
-      </GraphAppStyles>
-      <div>
-        Wins: {playRecordLineEquation.correct} Losses:{' '}
-        {playRecordLineEquation.incorrect}
-      </div>
+      </AppStyleForWinner>
     </>
   );
 }

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { SingleFractionStyle } from '../styles/FractionStyles';
-import { getRandomPoints } from '../utils/getRandomPoints';
 
 const EquationPickerStyles = styled.div`
   padding: 2rem;
   div {
-    background: var(--white);
+    background: inherit;
   }
   span.nowrap {
     white-space: nowrap;
