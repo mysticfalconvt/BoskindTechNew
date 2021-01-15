@@ -20,8 +20,8 @@ const AppStyleForWinner = styled.div`
       }
     }
 
-    --shine: rgba(0, 255, 0, 0.2);
-    --background: rgba(0, 180, 0, 0.1);
+    --shine: rgba(0, 255, 0, 0.1);
+    --background: rgba(0, 220, 0, 0.1);
     background-image: linear-gradient(
       90deg,
       var(--background) 0px,
@@ -29,7 +29,7 @@ const AppStyleForWinner = styled.div`
       var(--background) 160px
     );
     background-size: 500px;
-    animation: shine 3s infinite alternate ease-in-out;
+    animation: shine 5s infinite alternate ease-in-out;
   }
 
   .lose {
@@ -45,7 +45,7 @@ const AppStyleForWinner = styled.div`
     }
 
     --shine: rgba(255, 0, 0, 0.2);
-    --background: rgba(180, 0, 0, 0.1);
+    --background: rgba(220, 0, 0, 0.1);
     background-image: linear-gradient(
       90deg,
       var(--background) 0px,
@@ -53,7 +53,7 @@ const AppStyleForWinner = styled.div`
       var(--background) 160px
     );
     background-size: 500px;
-    animation: shine 3s infinite alternate ease-in-out;
+    animation: shine 5s infinite alternate ease-in-out;
   }
 `;
 
