@@ -29,6 +29,7 @@ export default {
         { title: 'Quote', value: 'blockquote' },
       ],
       lists: [{ title: 'Bullet', value: 'bullet' }],
+
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -60,6 +61,14 @@ export default {
           },
         ],
       },
+    },
+    {
+      // name: 'code',
+      title: 'Code Block',
+      type: 'code',
+      // options: {
+      //   language: 'js',
+      // },
     },
     // You can add additional types here. Note that you can't use
     // primitive types such as 'string' and 'number' in the same array

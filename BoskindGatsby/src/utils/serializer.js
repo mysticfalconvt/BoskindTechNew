@@ -1,5 +1,11 @@
 import urlBuilder from '@sanity/image-url';
 import React from 'react';
+import SyntaxHighligher from 'react-syntax-highlighter';
+import {
+  sunburst,
+  atelierCaveDark,
+  dark,
+} from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const urlFor = (source) =>
   urlBuilder({ projectId: 'jzq9n05y', dataset: 'production' }).image(source);
@@ -23,6 +29,17 @@ const serializer = {
         </a>
       ) : (
         <a href={href}>{children}</a>
+      );
+    },
+    code: ({ node = {} }) => {
+      const { code, language } = node;
+      if (!code) {
+        return null;
+      }
+      return (
+        <SyntaxHighligher stlye={sunburst} language={language || 'js'}>
+          {code}
+        </SyntaxHighligher>
       );
     },
   },
