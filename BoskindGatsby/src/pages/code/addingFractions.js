@@ -197,6 +197,16 @@ export default function AddingFractions() {
   const [previousTurns, setPreviousTurns] = useState();
 
   useEffect(() => {
+    localStorage.getItem('playRecord') &&
+      setPreviousTurns(JSON.parse(localStorage.getItem('addingFractions')));
+  }, []);
+  useEffect(
+    () =>
+      localStorage.setItem('addingFractions', JSON.stringify(previousTurns)),
+    [previousTurns]
+  );
+
+  useEffect(() => {
     if (gameState === 'newGame') {
       newGame({
         setGameState,
@@ -263,16 +273,13 @@ export default function AddingFractions() {
       </p> */}
       <AnswerStyles>
         {previousTurns &&
-          previousTurns.map((turn) => {
-            console.log(turn);
-            return (
-              <AnswerFractions
-                fractionValues={turn}
-                className={turn.correct}
-                key={`turn ${turn.numeratorOne} ${Math.random()} `}
-              />
-            );
-          })}
+          previousTurns.map((turn) => (
+            <AnswerFractions
+              fractionValues={turn}
+              className={turn.correct}
+              key={`turn ${turn.numeratorOne} ${Math.random()} `}
+            />
+          ))}
       </AnswerStyles>
     </GameStyle>
   );
