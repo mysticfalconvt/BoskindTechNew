@@ -2,10 +2,13 @@ import urlBuilder from '@sanity/image-url';
 import React from 'react';
 import SyntaxHighligher from 'react-syntax-highlighter';
 import {
+  dracula,
   sunburst,
   atelierCaveDark,
   dark,
 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
+import { synthwave84 } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const urlFor = (source) =>
   urlBuilder({ projectId: 'jzq9n05y', dataset: 'production' }).image(source);
@@ -37,7 +40,7 @@ const serializer = {
         return null;
       }
       return (
-        <SyntaxHighligher stlye={sunburst} language={language || 'js'}>
+        <SyntaxHighligher style={dracula} language={language || 'js'}>
           {code}
         </SyntaxHighligher>
       );
