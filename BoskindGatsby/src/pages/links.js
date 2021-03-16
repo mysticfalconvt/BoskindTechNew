@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
+import Toggle from 'react-toggle';
 import SEO from '../components/SEO';
+import LinksTableSearchable from '../components/LinksTableSearchable';
+import 'react-toggle/style.css';
 
 const LinkGridStyles = styled.div`
   display: grid;
@@ -14,7 +17,7 @@ const LinkGridStyles = styled.div`
     transition: 0.5s;
     margin-top: 5px;
     :hover {
-      transform: scale(1.1);
+      transform: scale(1.01);
       transition: 0.3s;
       text-shadow: 0 0 3px var(--red);
     }
@@ -33,18 +36,35 @@ function ShowLink({ linkInfo }) {
   );
 }
 
+function LinkGrid({ links }) {
+  return (
+    <LinkGridStyles>
+      {links.map((link) => (
+        <ShowLink linkInfo={link} key={link.name} />
+      ))}
+    </LinkGridStyles>
+  );
+}
+
 export default function LinksPage({ data }) {
   const links = data.links.nodes;
-
+  const [viewAsTable, setViewAsTable] = useState(false);
   return (
     <>
       <SEO title="Helpful Links" />
       <h1 className="center">Helpful Links</h1>
-      <LinkGridStyles>
-        {links.map((link) => (
-          <ShowLink linkInfo={link} key={link.name} />
-        ))}
-      </LinkGridStyles>
+      <label>
+        <span>Searchable Table</span>
+        <Toggle
+          checked={viewAsTable}
+          onChange={() => setViewAsTable(!viewAsTable)}
+        />
+      </label>
+      {viewAsTable ? (
+        <LinksTableSearchable links={links} />
+      ) : (
+        <LinkGrid links={links} />
+      )}
     </>
   );
 }
