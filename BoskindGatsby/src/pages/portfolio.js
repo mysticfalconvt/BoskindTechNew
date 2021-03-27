@@ -68,6 +68,7 @@ export default function portfolio() {
             <p>Express</p>
             <p>Gatsby</p>
             <p>Next JS</p>
+            <p>GraphQL</p>
           </FlexContainer>
         </div>
       </GridContainer>
