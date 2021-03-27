@@ -51,6 +51,9 @@ export default function portfolio() {
             data is much better in a school envornment with hundreds of teachers
             and students as users. The full site is available at{' '}
             <a href="http://ncujhs.tech">NCUJHS.Tech</a>
+            <br />
+            To see some of my code please checkout my
+            <a href="https://github.com/mysticfalconvt"> Github.</a>
           </p>
         </div>
         <div>
