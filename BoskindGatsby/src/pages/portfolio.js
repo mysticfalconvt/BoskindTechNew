@@ -28,7 +28,9 @@ export default function portfolio() {
   return (
     <main>
       <h1 className="center">Rob Boskind - Web Developer</h1>
-      <h3 className="center">Looking to work for you</h3>
+      <h3 className="center">
+        Looking to work for you <a href="\Resume.pdf"> · Resume · </a>
+      </h3>
       <GridContainer>
         <div>
           <h3 className="center">About Me</h3>
@@ -47,7 +49,8 @@ export default function portfolio() {
             functions. It was created using Node and Express with a MongoDB
             backend and Pug for templating. This demo allows full use, but the
             data is much better in a school envornment with hundreds of teachers
-            and students as users.
+            and students as users. The full site is available at{' '}
+            <a href="http://ncujhs.tech">NCUJHS.Tech</a>
           </p>
         </div>
         <div>
