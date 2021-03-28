@@ -42,15 +42,20 @@ export default function portfolio() {
             full time development.
           </p>
           <p>
-            <a href="https://school-dashboard-demo.herokuapp.com/">
-              School Dashboard
-            </a>
-            - This is a dashboard my school has used to coordinate many school
+            <a href="/blog/ncujhs-tech-guided-tour">School Dashboard</a>- This
+            is a dashboard my school has used to coordinate many school
             functions. It was created using Node and Express with a MongoDB
             backend and Pug for templating. This demo allows full use, but the
             data is much better in a school envornment with hundreds of teachers
-            and students as users. The full site is available at{' '}
-            <a href="http://ncujhs.tech">NCUJHS.Tech</a>
+            and students as users. Read my walkthrough of the app
+            <a href="/blog/ncujhs-tech-guided-tour"> HERE. </a>
+            The full site is available at{' '}
+            <a href="http://ncujhs.tech">NCUJHS.Tech </a>
+            but for a demo with an easy login button to test it out as a
+            student, teacher, or parent go to{' '}
+            <a href="https://school-dashboard-demo.herokuapp.com/login">
+              School Dashboard
+            </a>
             <br />
             To see some of my code please checkout my
             <a href="https://github.com/mysticfalconvt"> Github.</a>
