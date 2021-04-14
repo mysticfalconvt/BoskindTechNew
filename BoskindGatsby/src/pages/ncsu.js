@@ -5,6 +5,9 @@ const ColumnsStyles = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 100px;
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export default function schoolIdeas() {
@@ -24,7 +27,9 @@ export default function schoolIdeas() {
         <div>
           <h3>Specific applications</h3>
           <ul>
-            <li>School Dashboard</li>
+            <li>
+              <a href="/blog/ncujhs-tech-guided-tour">School Dashboard</a>
+            </li>
           </ul>
         </div>
       </ColumnsStyles>
