@@ -27,9 +27,9 @@ export default function schoolIdeas() {
           <h1 className="center">Benefits of a staff software engineer</h1>
           <p>
             In my time at NCUJHS I have become more and more focused on
-            supporting the technology of the school. As the staff of the school
-            learned of my skills they have increasingly relied on my abilities
-            to improve their effectiveness through technology.
+            supporting the usage of technology of the school. As the staff of
+            the school learned about my skills, they have increasingly relied on
+            my abilities to improve their effectiveness through technology.
           </p>
           <p>
             One of my most useful skills is software engineering. As technology
@@ -40,17 +40,18 @@ export default function schoolIdeas() {
             Teachers and students are frequently overwhelmed by the number of
             different websites they must remember and access. By creating custom
             software that combines an increasing number of the functions that
-            teachers and students use on a regular basis into a single custom
-            application we can improve efficiency by reducing context switching.
+            teachers and students use on a regular basis, into a single custom
+            application, we can improve efficiency by reducing context
+            switching.
           </p>
           <p>
             Another advantage of a staff software developer is the quick
-            implementation of education ideas by the members of our educational
-            community. When the NCUJHS Librarian Ericka Behrsing had the idea of
-            a website to search for books by one or more social issues she
+            implementation of educational ideas by the members of our school
+            community. When the NCUJHS Librarian, Ericka Behrsing, had the idea
+            of a website to search for books by one or more social issues she
             immediately approached me. Having a go-to resource for creating
             functional websites would give teachers the opportunity to quickly
-            add to roll out new and customized resources.
+            roll out new and customized resources.
           </p>
           <p>
             I realize that this is a shift for the focus of the SU. This would
@@ -63,7 +64,7 @@ export default function schoolIdeas() {
           </p>
         </div>
         <div>
-          <h3 className="center">Specific Applications</h3>
+          <h3 className="center">Links to Specific Applications</h3>
           <ul>
             <li>
               <a href="/blog/ncujhs-tech-guided-tour">School Dashboard</a>
@@ -75,24 +76,24 @@ export default function schoolIdeas() {
                 Searchable Book Database
               </a>
               {' - '}
-              This is a proof of concept for something that was an idea that the
-              librarian team had on their last S.U. wide librarian meeting. I
-              was asked if I could create a nice visual book search sorted by
-              social categories, a frequent request by students and staff.
+              This is a proof of concept for an idea that the librarian team had
+              on their last S.U. wide librarian meeting. I was asked if I could
+              create a nice visual book search sorted by social categories, a
+              frequent request by students and staff.
             </li>
             <li>
               <a href="/code/theFabulousFractionGame/">Fraction Game</a>
               {' - '}
               Students love this one. I have many students who have played over
-              500 rounds
+              500 rounds.
             </li>
             <li>
               <a href="/links/">Improved Searchable Links</a>
               {' - '}
               Students are frequently stuck staring at the SU page of links. By
-              integrating this into a school specific dashboard links can even
-              be customized for an individual student. Changes can be based on
-              factors like grade level, or even teacher.
+              integrating this into a school specific dashboard, links can be
+              customized to each individual student. Changes can be based on
+              factors like grade level or even teacher.
             </li>
             <li>
               <a href="https://drive.google.com/file/d/1DAZ47Z_gvB85f9vQeg_eer_slhdRS4Ut/view?usp=sharing">
@@ -101,12 +102,12 @@ export default function schoolIdeas() {
               {' - '}I am frequently recording small video tutorials to assist
               with common tech tasks. I would like to create a searchable
               database of similar videos to make it easier for teachers to
-              quickly access needed skills
+              quickly access needed skills.
             </li>
             <li>
               Google apps optimizations - Creating automated processes and
               queries to improve the functionality of using spreadsheets and
-              forms as a database
+              forms as a database.
             </li>
           </ul>
         </div>
