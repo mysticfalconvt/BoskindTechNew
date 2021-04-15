@@ -12,6 +12,7 @@ const LinkGridStyles = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 4rem;
   grid-auto-rows: auto auto auto;
+  overflow: hidden;
   a {
     animation: 0.5s ease-out 0s 1 fadeIn;
     transition: 0.5s;
@@ -19,7 +20,7 @@ const LinkGridStyles = styled.div`
     :hover {
       transform: scale(1.01);
       transition: 0.3s;
-      text-shadow: 0 0 3px var(--red);
+      text-shadow: 0 0 1px var(--red);
     }
   }
 `;
@@ -54,7 +55,7 @@ export default function LinksPage({ data }) {
       <SEO title="Helpful Links" />
       <h1 className="center">Helpful Links</h1>
       <label>
-        <span>Searchable Table</span>
+        <span style={{ marginRight: '5px' }}>Searchable Table</span>
         <Toggle
           checked={viewAsTable}
           onChange={() => setViewAsTable(!viewAsTable)}
