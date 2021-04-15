@@ -47,7 +47,7 @@ export default function schoolIdeas() {
             Another advantage of a staff software developer is the quick
             implementation of education ideas by the members of our educational
             community. When the Ericka Behrsing had the idea of a website to
-            search for books by one or more social issue she immediately
+            search for books by one or more social issues she immediately
             approached me. Having a go-to resource for creating functional
             websites would give teachers the opportunity to quickly add to roll
             out new and customized resources.
