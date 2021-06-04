@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import SEO from '../components/SEO';
 
 const ColumnsStyles = styled.div`
   display: grid;
@@ -22,6 +23,7 @@ const ColumnsStyles = styled.div`
 export default function schoolIdeas() {
   return (
     <div>
+      <SEO title="NCSU Staff Software Engineer" />
       <ColumnsStyles>
         <div>
           <h1 className="center">Benefits of a staff software engineer</h1>
