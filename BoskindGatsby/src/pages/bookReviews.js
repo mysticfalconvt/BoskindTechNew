@@ -25,39 +25,40 @@ const LinkGridStyles = styled.div`
   }
 
   .singleBook {
-    border: 1px solid red;
+    border: 2px solid var(--yellow);
     text-align: center;
+    border-radius: 1rem;
+    box-shadow: 1px 1px var(--yellow);
   }
 `;
 
-function ShowLink({ linkInfo }) {
+function ShowBook({ bookInfo }) {
   return (
     <div className="singleBook">
-      <h3 className="center">{linkInfo.title}</h3>
-      <p>{linkInfo.properties.Author.value[0].name}</p>
-      <p>{linkInfo.properties.Score__5.value.name}</p>
+      <h3 className="center">{bookInfo.title}</h3>
+      <p>{bookInfo.properties.Author.value[0].name}</p>
+      <p>{bookInfo.properties.Score__5.value.name}</p>
     </div>
   );
 }
 
-function LinkGrid({ links }) {
+function BookGrid({ books }) {
   return (
     <LinkGridStyles>
-      {links.map((link) => (
-        <ShowLink linkInfo={link} key={link.title} />
+      {books.map((book) => (
+        <ShowBook bookInfo={book} key={book.title} />
       ))}
     </LinkGridStyles>
   );
 }
 
-export default function LinksPage({ data }) {
+export default function BooksPage({ data }) {
   const books = data.allNotion.nodes;
   const [viewAsTable, setViewAsTable] = useState(false);
-  console.log(books);
   return (
     <>
-      <SEO title="Helpful Links" />
-      <h1 className="center">Helpful Links</h1>
+      <SEO title="Mr. Boskind's Reading List" />
+      <h1 className="center">Reading List</h1>
       <label>
         <span style={{ marginRight: '5px' }}>Searchable Table</span>
         <Toggle
@@ -66,9 +67,9 @@ export default function LinksPage({ data }) {
         />
       </label>
       {viewAsTable ? (
-        <LinksTableSearchable links={books} />
+        <LinksTableSearchable books={books} />
       ) : (
-        <LinkGrid links={books} />
+        <BookGrid books={books} />
       )}
     </>
   );
