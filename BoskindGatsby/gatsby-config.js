@@ -40,6 +40,13 @@ export default {
       },
     },
     {
+      resolve: `gatsby-source-notion-api`,
+      options: {
+        token: process.env.NOTION_TOKEN,
+        databaseId: process.env.NOTION_ID,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Boskind.Tech`,
