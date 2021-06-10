@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import Toggle from 'react-toggle';
 import SEO from '../components/SEO';
-import LinksTableSearchable from '../components/LinksTableSearchable';
+import BooksTable from '../components/BooksTable';
 import 'react-toggle/style.css';
 
 const LinkGridStyles = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 4rem;
   grid-auto-rows: auto auto auto;
   overflow: hidden;
@@ -87,7 +87,7 @@ function BookGrid({ books }) {
 export default function BooksPage({ data }) {
   const books = data.allNotion.nodes;
   const [viewAsTable, setViewAsTable] = useState(false);
-  // console.log(books);
+  console.log(books);
   return (
     <>
       <SEO title="Mr. Boskind's Reading List" />
@@ -99,11 +99,7 @@ export default function BooksPage({ data }) {
           onChange={() => setViewAsTable(!viewAsTable)}
         />
       </label>
-      {viewAsTable ? (
-        <LinksTableSearchable books={books} />
-      ) : (
-        <BookGrid books={books} />
-      )}
+      {viewAsTable ? <BooksTable books={books} /> : <BookGrid books={books} />}
     </>
   );
 }
