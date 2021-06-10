@@ -66,7 +66,10 @@ function ShowBook({ bookInfo }) {
       )}
       {hasImage && (
         <>
-          <img src={bookInfo.properties.image.value} />
+          <img
+            src={bookInfo.properties.image.value}
+            alt={`${bookInfo.title} - ${bookInfo.properties.Author.value[0].name}`}
+          />
           <p className="rating">{bookInfo.properties.Score__5?.value?.name}</p>
         </>
       )}
