@@ -29,15 +29,47 @@ const LinkGridStyles = styled.div`
     text-align: center;
     border-radius: 1rem;
     box-shadow: 1px 1px var(--yellow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    img {
+      max-width: 80%;
+      max-height: 80%;
+      padding-top: 1rem;
+      position: relative;
+      /* margin-top: -10rem; */
+      z-index: 0;
+    }
+    .rating {
+      padding: 0.5rem 1rem;
+
+      background: var(--grey);
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 1000px;
+    }
   }
 `;
 
 function ShowBook({ bookInfo }) {
+  // console.log(bookInfo.properties.image);
+  const hasImage = bookInfo.properties.image?.value;
   return (
     <div className="singleBook">
-      <h3 className="center">{bookInfo.title}</h3>
-      <p>{bookInfo.properties.Author.value[0].name}</p>
-      <p>{bookInfo.properties.Score__5.value.name}</p>
+      {!hasImage && (
+        <>
+          <h3 className="center">{bookInfo.title}</h3>
+          <p>By: {bookInfo.properties.Author.value[0].name}</p>
+          <p className="rating">{bookInfo.properties.Score__5?.value?.name}</p>
+        </>
+      )}
+      {hasImage && (
+        <>
+          <img src={bookInfo.properties.image.value} />
+          <p className="rating">{bookInfo.properties.Score__5?.value?.name}</p>
+        </>
+      )}
     </div>
   );
 }
@@ -55,6 +87,7 @@ function BookGrid({ books }) {
 export default function BooksPage({ data }) {
   const books = data.allNotion.nodes;
   const [viewAsTable, setViewAsTable] = useState(false);
+  // console.log(books);
   return (
     <>
       <SEO title="Mr. Boskind's Reading List" />
@@ -96,6 +129,14 @@ export const query = graphql`
           Author {
             value {
               name
+            }
+          }
+          image {
+            value
+          }
+          Finished_on {
+            value {
+              start
             }
           }
         }
