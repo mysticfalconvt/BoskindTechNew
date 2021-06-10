@@ -69,6 +69,7 @@ function ShowBook({ bookInfo }) {
           <img
             src={bookInfo.properties.image.value}
             alt={`${bookInfo.title} - ${bookInfo.properties.Author.value[0].name}`}
+            title={`${bookInfo.title} - ${bookInfo.properties.Author.value[0].name}`}
           />
           <p className="rating">{bookInfo.properties.Score__5?.value?.name}</p>
         </>
