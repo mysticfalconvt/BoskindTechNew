@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import SEO from '../components/SEO';
 
@@ -53,7 +53,10 @@ export default function SingleUnitPage({ data }) {
       <LessonGrid>
         <div />
         <div>
-          <Img fluid={unit.image.asset.fluid} className="center" />
+          <GatsbyImage
+            image={unit.image.childImageSharp.gatsbyImageData}
+            className="center"
+          />
         </div>
       </LessonGrid>
     </>
@@ -74,9 +77,7 @@ export const query = graphql`
       id
       image {
         asset {
-          fluid(maxWidth: 600) {
-            ...GatsbySanityImageFluid
-          }
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
         }
       }
     }

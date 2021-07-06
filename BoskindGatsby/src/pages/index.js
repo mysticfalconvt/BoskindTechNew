@@ -42,9 +42,7 @@ export const query = graphql`
         _rawBody
         mainImage {
           asset {
-            fluid(maxWidth: 500) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
           }
         }
       }

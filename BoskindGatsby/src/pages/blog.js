@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import BlogPost, { SingleBlogCard } from '../components/BlogPost';
 import SEO from '../components/SEO';
 
@@ -46,9 +46,7 @@ export const query = graphql`
           _rawBio
           image {
             asset {
-              fluid(maxWidth: 500) {
-                ...GatsbySanityImageFluid
-              }
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
             }
           }
         }
@@ -59,9 +57,7 @@ export const query = graphql`
         _rawBody
         mainImage {
           asset {
-            fluid(maxWidth: 1200) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
           }
         }
       }

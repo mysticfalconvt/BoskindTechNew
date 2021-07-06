@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import Toggle from 'react-toggle';
 import SEO from '../components/SEO';
 import LinksTableSearchable from '../components/LinksTableSearchable';
@@ -30,7 +30,7 @@ function ShowLink({ linkInfo }) {
     <>
       <a href={linkInfo.url}>
         <h3 className="center">{linkInfo.name}</h3>
-        <Img fluid={linkInfo.image.asset.fluid} />
+        <GatsbyImage image={linkInfo.image.childImageSharp.gatsbyImageData} />
         <p>{linkInfo.description}</p>
       </a>
     </>
@@ -79,9 +79,7 @@ export const query = graphql`
         description
         image {
           asset {
-            fluid(maxWidth: 500) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
           }
         }
       }

@@ -29,9 +29,7 @@ export const query = graphql`
         Link
         image {
           asset {
-            fluid(maxWidth: 500) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
           }
         }
       }

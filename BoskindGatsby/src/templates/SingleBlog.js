@@ -26,9 +26,7 @@ export const query = graphql`
         _rawBio
         image {
           asset {
-            fluid(maxWidth: 500) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
           }
         }
       }
@@ -39,9 +37,7 @@ export const query = graphql`
       _rawBody
       mainImage {
         asset {
-          fluid(maxWidth: 1000) {
-            ...GatsbySanityImageFluid
-          }
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
         }
       }
     }

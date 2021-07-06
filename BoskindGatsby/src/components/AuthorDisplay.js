@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PortableText from '@sanity/block-content-to-react';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import serializer from '../utils/serializer';
 
 const AuthorStyles = styled.div`
@@ -41,7 +41,7 @@ export default function AuthorDisplay({ blog }) {
     return (
       <AuthorStyles>
         <div className="imageFade">
-          <Img fluid={blog.author.image.asset.fluid} />
+          <GatsbyImage image={blog.author.image.childImageSharp.gatsbyImageData} />
         </div>
         <div>
           <h2>Post by: {blog.author.name}</h2>
