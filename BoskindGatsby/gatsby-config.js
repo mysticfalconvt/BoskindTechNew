@@ -21,12 +21,7 @@ export default {
         ],
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   trackingId: 'UA-31032206-2',
-    //   head: true,
-    //   anonymize: true,
-    // },
+
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     `gatsby-plugin-transition-link`,
@@ -62,6 +57,28 @@ export default {
       resolve: `gatsby-plugin-offline`,
       options: {
         precachePages: [`/blog/`, `/units/*`, `/links/`],
+      },
+    },
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-obsidian',
+            options: {
+              titleToURL: (title) => `/${title}`, // optional
+              markdownFolder: `${__dirname}/src/markdown`, // optional
+              highlightClassName: 'highlight', // optional
+            },
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/markdown`,
       },
     },
   ],
