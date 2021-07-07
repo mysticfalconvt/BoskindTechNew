@@ -41,10 +41,11 @@ export default function Code({ data }) {
         {data.files.nodes.map((singleFile) => {
           const rawName = singleFile.internalComponentName;
           const spacedName = rawName.replace(/([A-Z])/g, ' $1');
-          const formatedName = spacedName.split(' ').slice(3).join(' ');
+          const formatedName = spacedName.split('/').slice(2).join(' ');
+          const capitalizeFirstLetter = formatedName.charAt(0).toUpperCase() + formatedName.slice(1); 
           return (
             <AniLink key={singleFile.path} fade to={singleFile.path}>
-              <p>{formatedName}</p>
+              <p>{capitalizeFirstLetter}</p>
             </AniLink>
           );
         })}
