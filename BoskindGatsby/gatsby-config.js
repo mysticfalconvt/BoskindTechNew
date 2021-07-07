@@ -63,18 +63,18 @@ export default {
     },
     {
       resolve: 'gatsby-transformer-remark',
-      options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-obsidian',
-            options: {
-              titleToURL: (title) => `/${title}`, // optional
-              markdownFolder: `${__dirname}/src/markdown`, // optional
-              highlightClassName: 'highlight', // optional
-            },
-          },
-        ],
-      },
+      // options: {
+      //   plugins: [
+      //     {
+      //       resolve: 'gatsby-remark-obsidian',
+      //       options: {
+      //         titleToURL: (title) => `/${title}`, // optional
+      //         markdownFolder: `${__dirname}/src/markdown`, // optional
+      //         highlightClassName: 'highlight', // optional
+      //       },
+      //     },
+      //   ],
+      // },
     },
     {
       resolve: `gatsby-source-filesystem`,
