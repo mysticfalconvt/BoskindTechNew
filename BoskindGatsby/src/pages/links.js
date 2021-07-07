@@ -30,7 +30,7 @@ function ShowLink({ linkInfo }) {
     <>
       <a href={linkInfo.url}>
         <h3 className="center">{linkInfo.name}</h3>
-        <GatsbyImage image={linkInfo.image.childImageSharp.gatsbyImageData} />
+        <GatsbyImage image={linkInfo.image.asset.gatsbyImageData} />
         <p>{linkInfo.description}</p>
       </a>
     </>

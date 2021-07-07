@@ -54,7 +54,7 @@ export default function SingleUnitPage({ data }) {
         <div />
         <div>
           <GatsbyImage
-            image={unit.image.childImageSharp.gatsbyImageData}
+            image={unit.image.asset.gatsbyImageData}
             className="center"
           />
         </div>

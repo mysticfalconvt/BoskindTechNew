@@ -22,7 +22,7 @@ export default function BlogPost({ blog }) {
   return (
     <div>
       <h3>{blog.publishedAt}</h3>
-      <GatsbyImage image={blog.mainImage.childImageSharp.gatsbyImageData} />
+      <GatsbyImage image={blog.mainImage.asset.gatsbyImageData} />
       <BlogTitleStyles>{blog.title}</BlogTitleStyles>
 
       <PortableText blocks={blog._rawBody} serializers={serializer} />
@@ -43,7 +43,7 @@ export function SingleBlogCard({ singleBlog }) {
     <SingleBlockCardStyles key={singleBlog.slug.current}>
       <Link to={`/blog/${singleBlog.slug.current}`}>
         <h2 className="tilt">{singleBlog.title}</h2>
-        <GatsbyImage image={singleBlog.mainImage.childImageSharp.gatsbyImageData} />
+        <GatsbyImage image={singleBlog.mainImage.asset.gatsbyImageData} />
         <h4>Categories:</h4>
         {singleBlog.categories.map((category) => (
           // <div key={category.title}>

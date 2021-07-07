@@ -41,7 +41,7 @@ export default function AuthorDisplay({ blog }) {
     return (
       <AuthorStyles>
         <div className="imageFade">
-          <GatsbyImage image={blog.author.image.childImageSharp.gatsbyImageData} />
+          <GatsbyImage image={blog.author.image.asset.gatsbyImageData} />
         </div>
         <div>
           <h2>Post by: {blog.author.name}</h2>

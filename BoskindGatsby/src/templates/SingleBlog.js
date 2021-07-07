@@ -13,7 +13,7 @@ export default function SingleBlogPost({ data }) {
 }
 
 export const query = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     blog: sanityPost(slug: { current: { eq: $slug } }) {
       title
       id
