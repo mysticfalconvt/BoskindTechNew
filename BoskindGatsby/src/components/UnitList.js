@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 const UnitGridStyles = styled.div`
@@ -49,7 +49,7 @@ function SingleUnit({ unit }) {
         <p className="center">
           Grade {unit.GradeLevel} - Unit #{unit.UnitNumber}
         </p>
-        <Img fluid={unit.image.asset.fluid} />
+        <GatsbyImage image={unit.image.asset.gatsbyImageData} />
 
         <h3 className="center">{unit.name}</h3>
       </AniLink>

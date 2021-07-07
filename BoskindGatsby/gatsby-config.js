@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+const dotenv = require(`dotenv`);
 
 dotenv.config({ path: '.env' });
 // This file is empty, but some people were reporting that it would not start unless they had an empty file. So here it is! You can delete the comment. Or replace it with your favourite shania twain lyrics.
@@ -21,12 +21,9 @@ export default {
         ],
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   trackingId: 'UA-31032206-2',
-    //   head: true,
-    //   anonymize: true,
-    // },
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     `gatsby-plugin-transition-link`,
@@ -62,6 +59,28 @@ export default {
       resolve: `gatsby-plugin-offline`,
       options: {
         precachePages: [`/blog/`, `/units/*`, `/links/`],
+      },
+    },
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-obsidian',
+            options: {
+              titleToURL: (title) => `/${title}`, // optional
+              markdownFolder: `${__dirname}/src/markdown`, // optional
+              highlightClassName: 'highlight', // optional
+            },
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/markdown`,
       },
     },
   ],

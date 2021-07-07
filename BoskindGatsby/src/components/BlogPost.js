@@ -1,6 +1,6 @@
 import React from 'react';
 import PortableText from '@sanity/block-content-to-react';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import AuthorDisplay from './AuthorDisplay';
@@ -22,7 +22,7 @@ export default function BlogPost({ blog }) {
   return (
     <div>
       <h3>{blog.publishedAt}</h3>
-      <Img fluid={blog.mainImage.asset.fluid} />
+      <GatsbyImage image={blog.mainImage.asset.gatsbyImageData} />
       <BlogTitleStyles>{blog.title}</BlogTitleStyles>
 
       <PortableText blocks={blog._rawBody} serializers={serializer} />
@@ -43,7 +43,7 @@ export function SingleBlogCard({ singleBlog }) {
     <SingleBlockCardStyles key={singleBlog.slug.current}>
       <Link to={`/blog/${singleBlog.slug.current}`}>
         <h2 className="tilt">{singleBlog.title}</h2>
-        <Img fluid={singleBlog.mainImage.asset.fluid} />
+        <GatsbyImage image={singleBlog.mainImage.asset.gatsbyImageData} />
         <h4>Categories:</h4>
         {singleBlog.categories.map((category) => (
           // <div key={category.title}>
