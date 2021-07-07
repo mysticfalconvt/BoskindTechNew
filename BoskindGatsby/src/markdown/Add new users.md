@@ -1,3 +1,9 @@
+---
+title: Add New Users
+slug: AddNewUsers
+
+---
+
 # Add / Update New Users
 #code #SchoolDashboard
 
