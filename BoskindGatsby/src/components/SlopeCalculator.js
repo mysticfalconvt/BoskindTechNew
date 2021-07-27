@@ -19,7 +19,10 @@ export default function SlopeCalculator() {
   const [yInt, updateyInt] = useState();
 
   useEffect(() => {
-    updateSlope((y2Value - y1Value) / (x2Value - x1Value));
+    if(x1Value && y1Value && x2Value && y2Value) {
+    updateSlope(((y2Value - y1Value) / (x2Value - x1Value)));
+    }else{
+    updateSlope("No Slope")}
   }, [x1Value, x2Value, y1Value, y2Value]);
 
   useEffect(() => {
@@ -61,10 +64,9 @@ export default function SlopeCalculator() {
         </div>
       </div>
       <p>The slope of the line is: {slope}</p>
-      <h2>
-        y={slope ? `${slope}x+` : ''}
-        {yInt}
-      </h2>
+      <h2>{(slope == "No Slope") ? "No Slope" : `y = ${slope}x + ${yInt}`}</h2>
+        
+  
     </SlopeCalcStyles>
   );
 }
