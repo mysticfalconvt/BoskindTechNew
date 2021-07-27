@@ -16,7 +16,7 @@ const NavStyles = styled.nav`
     list-style: none;
 
     display: grid;
-    grid-template-columns: 1fr 1fr auto 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr auto 1fr 1fr 1fr;
     grid-gap: 2rem;
     align-items: center;
     margin-top: -6rem;
@@ -33,11 +33,19 @@ const NavStyles = styled.nav`
       animation: 1s ease-out 0s 1 slideRight;
       --rotate: -2.5deg;
     }
-    &:nth-child(4) {
+    &:nth-child(3) {
+      animation: 1s ease-out 0s 1 slideRight;
+      --rotate: 2.5deg;
+    }
+    &:nth-child(5) {
       animation: 1s ease-out 0s 1 slideLeft;
       --rotate: -1.5deg;
     }
-    &:nth-child(5) {
+    &:nth-child(6) {
+      animation: 1s ease-out 0s 1 slideLeft;
+      --rotate: 2.5deg;
+    }
+    &:nth-child(7) {
       animation: 1s ease-out 0s 1 slideLeft;
       --rotate: -3.5deg;
     }
@@ -109,6 +117,11 @@ export default function Nav() {
           </AniLink>
         </li>
         <li>
+          <AniLink fade duration={0.8} bg="rgba(247, 200, 68,1)" to="http://math.boskind.tech">
+            Math Notes
+          </AniLink>
+        </li>
+        <li>
           <AniLink fade to="/links">
             Helpful Links
           </AniLink>
@@ -121,6 +134,11 @@ export default function Nav() {
         <li>
           <AniLink fade to="/blog">
             Blog
+          </AniLink>
+        </li>
+        <li>
+          <AniLink fade to="/bookReviews">
+            Book Reviews
           </AniLink>
         </li>
         <li>

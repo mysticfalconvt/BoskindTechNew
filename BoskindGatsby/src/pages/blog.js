@@ -17,9 +17,9 @@ export default function blog({ data }) {
   return (
     <div>
       <SEO title="Blog Posts" />
-      <p>Latest Blog Post</p>
+     
       {/* <BlogPost blog={data.blogs.nodes[0]} /> */}
-      <h4 className="center">Previous Blog Posts</h4>
+      <h1 className="center">Previous Blog Posts</h1>
       <BlogGridStyles>
         {data.blogs.nodes.map((singleBlog) => (
           <div key={singleBlog.id}>
