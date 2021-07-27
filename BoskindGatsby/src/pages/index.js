@@ -9,7 +9,7 @@ import SEO from '../components/SEO';
 
 export default function HomePage({ data }) {
   return (
-    <div className="center">
+    <div className="center"style={{overflow:"hidden"}}>
       <SEO title="Boskind.Tech!!!" />
       <h1>The Best Math Teacher Around</h1>
       <p>Calculating A New Digit Of π Every Single Day</p>
