@@ -56,9 +56,9 @@ export default function rockPaperScissors() {
         <div>
             <h1>Rock Paper Scissors</h1>
             <h2>{result ? `${result} wins!` : "New Game"}</h2>
-            <button style={{margin: "5px"}} onClick={() => setPlayer1('rock')}>Rock</button>
-            <button style={{margin: "5px"}} onClick={() => setPlayer1('paper')}>Paper</button>
-            <button style={{margin: "5px"}} onClick={() => setPlayer1('scissors')}>Scissors</button>
+            <button disabled={!!player2} style={{margin: "5px"}} onClick={() => setPlayer1('rock')}>Rock</button>
+            <button disabled={!!player2} style={{margin: "5px"}} onClick={() => setPlayer1('paper')}>Paper</button>
+            <button disabled={!!player2} style={{margin: "5px"}} onClick={() => setPlayer1('scissors')}>Scissors</button>
             <p>Player 1: {player1}</p>
             <p>Player 2: {player2}</p>
             <button 
