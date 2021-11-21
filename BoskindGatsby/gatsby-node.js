@@ -61,7 +61,7 @@ export async function createPages(params) {
   // Wait for all promises to be resolved before finishing this function
   await Promise.all([turnUnitsIntoPages(params), turnBlogsIntoPages(params)]);
 
-  const {createRedirect} = actions //actions is collection of many actions - https://www.gatsbyjs.org/docs/actions
+  const {createRedirect} = params.actions //actions is collection of many actions - https://www.gatsbyjs.org/docs/actions
   createRedirect({ fromPath: '/portfolio', toPath: 'https://portfolio.boskind.tech/', isPermanent: true });
   // 1. Pizzas
   // 2. Toppings
